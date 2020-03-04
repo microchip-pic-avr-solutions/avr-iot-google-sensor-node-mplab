@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="65">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <logicalFolder name="MCC Generated Files"
+                     displayName="MCC Generated Files"
+                     projectFiles="true">
+        <logicalFolder name="f2" displayName="cli" projectFiles="true">
+          <itemPath>mcc_generated_files/cli/cli.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f1" displayName="cloud" projectFiles="true">
+          <logicalFolder name="f1" displayName="crypto_client" projectFiles="true">
+            <itemPath>mcc_generated_files/cloud/crypto_client/crypto_client.h</itemPath>
+          </logicalFolder>
+          <itemPath>mcc_generated_files/cloud/cloud_service.h</itemPath>
+          <itemPath>mcc_generated_files/cloud/wifi_service.h</itemPath>
+          <itemPath>mcc_generated_files/cloud/mqtt_service.h</itemPath>
+          <itemPath>mcc_generated_files/cloud/cloud_interface.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="config" displayName="config" projectFiles="true">
+          <itemPath>mcc_generated_files/config/clock_config.h</itemPath>
+          <itemPath>mcc_generated_files/config/conf_winc.h</itemPath>
+          <itemPath>mcc_generated_files/config/IoT_Sensor_Node_config.h</itemPath>
+          <itemPath>mcc_generated_files/config/cloud_config.h</itemPath>
+          <itemPath>mcc_generated_files/config/mqtt_config.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f3" displayName="credentials_storage" projectFiles="true">
+          <itemPath>mcc_generated_files/credentials_storage/credentials_storage.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="CryptoAuthenticationLibrary"
+                       displayName="CryptoAuthenticationLibrary"
+                       projectFiles="true">
+          <logicalFolder name="atcacert" displayName="atcacert" projectFiles="true">
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_client.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_date.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_def.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_der.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_host_hw.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_host_sw.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_pem.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="basic" displayName="basic" projectFiles="true">
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_helpers.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="crypto" displayName="crypto" projectFiles="true">
+            <logicalFolder name="hashes" displayName="hashes" projectFiles="true">
+              <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/hashes/sha1_routines.h</itemPath>
+              <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/hashes/sha2_routines.h</itemPath>
+            </logicalFolder>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/atca_crypto_sw.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/atca_crypto_sw_ecdsa.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/atca_crypto_sw_rand.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/atca_crypto_sw_sha1.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/atca_crypto_sw_sha2.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="hal" displayName="hal" projectFiles="true">
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/hal/atca_hal.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/hal/atca_i2c_hal.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/hal/atca_start_config.h</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/hal/atca_start_iface.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="host" displayName="host" projectFiles="true">
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/host/atca_host.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="jwt" displayName="jwt" projectFiles="true">
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/jwt/atca_jwt.h</itemPath>
+          </logicalFolder>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_bool.h</itemPath>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_cfgs.h</itemPath>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_command.h</itemPath>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_compiler.h</itemPath>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_device.h</itemPath>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_devtypes.h</itemPath>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_execution.h</itemPath>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_iface.h</itemPath>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_status.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="drivers" displayName="drivers" projectFiles="true">
+          <itemPath>mcc_generated_files/drivers/spi_master.h</itemPath>
+          <itemPath>mcc_generated_files/drivers/timeout.h</itemPath>
+          <itemPath>mcc_generated_files/drivers/i2c_simple_master.h</itemPath>
+          <itemPath>mcc_generated_files/drivers/uart.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="include" displayName="include" projectFiles="true">
+          <itemPath>mcc_generated_files/include/cpuint.h</itemPath>
+          <itemPath>mcc_generated_files/include/port.h</itemPath>
+          <itemPath>mcc_generated_files/include/rtc.h</itemPath>
+          <itemPath>mcc_generated_files/include/pin_manager.h</itemPath>
+          <itemPath>mcc_generated_files/include/rstctrl.h</itemPath>
+          <itemPath>mcc_generated_files/include/spi0.h</itemPath>
+          <itemPath>mcc_generated_files/include/protected_io.h</itemPath>
+          <itemPath>mcc_generated_files/include/ccp.h</itemPath>
+          <itemPath>mcc_generated_files/include/twi0_master.h</itemPath>
+          <itemPath>mcc_generated_files/include/usart2.h</itemPath>
+          <itemPath>mcc_generated_files/include/adc0.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="mqtt" displayName="mqtt" projectFiles="true">
+          <logicalFolder name="mqtt_comm_bsd"
+                         displayName="mqtt_comm_bsd"
+                         projectFiles="true">
+            <itemPath>mcc_generated_files/mqtt/mqtt_comm_bsd/mqtt_comm_layer.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="mqtt_core" displayName="mqtt_core" projectFiles="true">
+            <itemPath>mcc_generated_files/mqtt/mqtt_core/mqtt_core.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="mqtt_exchange_buffer"
+                         displayName="mqtt_exchange_buffer"
+                         projectFiles="true">
+            <itemPath>mcc_generated_files/mqtt/mqtt_exchange_buffer/mqtt_exchange_buffer.h</itemPath>
+          </logicalFolder>
+          <itemPath>mcc_generated_files/mqtt/mqtt_packetTransfer_interface.h</itemPath>
+          <itemPath>mcc_generated_files/mqtt/mqtt_winc_adapter.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="utils" displayName="utils" projectFiles="true">
+          <logicalFolder name="assembler" displayName="assembler" projectFiles="true">
+            <itemPath>mcc_generated_files/utils/assembler/iar.h</itemPath>
+            <itemPath>mcc_generated_files/utils/assembler/gas.h</itemPath>
+          </logicalFolder>
+          <itemPath>mcc_generated_files/utils/compiler.h</itemPath>
+          <itemPath>mcc_generated_files/utils/utils.h</itemPath>
+          <itemPath>mcc_generated_files/utils/interrupt_avr8.h</itemPath>
+          <itemPath>mcc_generated_files/utils/utils_assert.h</itemPath>
+          <itemPath>mcc_generated_files/utils/assembler.h</itemPath>
+          <itemPath>mcc_generated_files/utils/atomic.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="winc" displayName="winc" projectFiles="true">
+          <logicalFolder name="common" displayName="common" projectFiles="true">
+            <itemPath>mcc_generated_files/winc/common/winc_defines.h</itemPath>
+            <itemPath>mcc_generated_files/winc/common/winc_registers.h</itemPath>
+            <itemPath>mcc_generated_files/winc/common/ecc_types.h</itemPath>
+            <itemPath>mcc_generated_files/winc/common/winc_debug.h</itemPath>
+            <itemPath>mcc_generated_files/winc/common/winc_1500_3A0_registers.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="driver" displayName="driver" projectFiles="true">
+            <itemPath>mcc_generated_files/winc/driver/winc_spi.h</itemPath>
+            <itemPath>mcc_generated_files/winc/driver/winc_adapter.h</itemPath>
+            <itemPath>mcc_generated_files/winc/driver/winc_drv.h</itemPath>
+            <itemPath>mcc_generated_files/winc/driver/winc_asic.h</itemPath>
+            <itemPath>mcc_generated_files/winc/driver/winc_hif.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="include" displayName="include" projectFiles="true">
+            <itemPath>mcc_generated_files/winc/include/conf_winc_defaults.h</itemPath>
+            <itemPath>mcc_generated_files/winc/include/winc_legacy.h</itemPath>
+            <itemPath>mcc_generated_files/winc/include/winc.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="m2m" displayName="m2m" projectFiles="true">
+            <itemPath>mcc_generated_files/winc/m2m/m2m_wifi.h</itemPath>
+            <itemPath>mcc_generated_files/winc/m2m/m2m_ssl.h</itemPath>
+            <itemPath>mcc_generated_files/winc/m2m/m2m_periph.h</itemPath>
+            <itemPath>mcc_generated_files/winc/m2m/m2m_ota.h</itemPath>
+            <itemPath>mcc_generated_files/winc/m2m/m2m_socket_host_if.h</itemPath>
+            <itemPath>mcc_generated_files/winc/m2m/m2m_fwinfo.h</itemPath>
+            <itemPath>mcc_generated_files/winc/m2m/m2m_crypto.h</itemPath>
+            <itemPath>mcc_generated_files/winc/m2m/m2m_types.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="socket" displayName="socket" projectFiles="true">
+            <itemPath>mcc_generated_files/winc/socket/socket.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="spi_flash" displayName="spi_flash" projectFiles="true">
+            <itemPath>mcc_generated_files/winc/spi_flash/flexible_flash.h</itemPath>
+            <itemPath>mcc_generated_files/winc/spi_flash/spi_flash_map.h</itemPath>
+            <itemPath>mcc_generated_files/winc/spi_flash/spi_flash.h</itemPath>
+          </logicalFolder>
+        </logicalFolder>
+        <itemPath>mcc_generated_files/delay.h</itemPath>
+        <itemPath>mcc_generated_files/mcc.h</itemPath>
+        <itemPath>mcc_generated_files/application_manager.h</itemPath>
+        <itemPath>mcc_generated_files/debug_print.h</itemPath>
+        <itemPath>mcc_generated_files/led.h</itemPath>
+        <itemPath>mcc_generated_files/sensors_handling.h</itemPath>
+        <itemPath>mcc_generated_files/time_service.h</itemPath>
+        <itemPath>mcc_generated_files/banner.h</itemPath>
+        <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/cryptoauthlib.h</itemPath>
+        <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/CryptoAuth_init.h</itemPath>
+        <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/cryptoauthlib_config.h</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="LinkerScript"
+                   displayName="Linker Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="Resource Files"
+                   displayName="Resource Files"
+                   projectFiles="true">
+      <logicalFolder name="MCC Generated Files"
+                     displayName="MCC Generated Files"
+                     projectFiles="true">
+        <logicalFolder name="docs" displayName="docs" projectFiles="true">
+          <logicalFolder name="mqtt_documentation"
+                         displayName="mqtt_documentation"
+                         projectFiles="true">
+            <itemPath>mcc_generated_files/docs/mqtt_documentation/Microchip MQTT Client Library.docx</itemPath>
+            <itemPath>mcc_generated_files/docs/mqtt_documentation/MQTT Readme.md</itemPath>
+          </logicalFolder>
+        </logicalFolder>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="MCC Generated Files"
+                     displayName="MCC Generated Files"
+                     projectFiles="true">
+        <logicalFolder name="f2" displayName="cli" projectFiles="true">
+          <itemPath>mcc_generated_files/cli/cli.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f1" displayName="cloud" projectFiles="true">
+          <logicalFolder name="f1" displayName="crypto_client" projectFiles="true">
+            <itemPath>mcc_generated_files/cloud/crypto_client/crypto_client.c</itemPath>
+          </logicalFolder>
+          <itemPath>mcc_generated_files/cloud/cloud_service.c</itemPath>
+          <itemPath>mcc_generated_files/cloud/wifi_service.c</itemPath>
+          <itemPath>mcc_generated_files/cloud/mqtt_service.c</itemPath>
+          <itemPath>mcc_generated_files/cloud/google_cloud_service.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f3" displayName="credentials_storage" projectFiles="true">
+          <itemPath>mcc_generated_files/credentials_storage/credentials_storage.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="CryptoAuthenticationLibrary"
+                       displayName="CryptoAuthenticationLibrary"
+                       projectFiles="true">
+          <logicalFolder name="atcacert" displayName="atcacert" projectFiles="true">
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_client.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_date.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_def.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_der.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_host_hw.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_host_sw.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atcacert/atcacert_pem.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="basic" displayName="basic" projectFiles="true">
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_checkmac.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_counter.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_derivekey.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_ecdh.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_gendig.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_genkey.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_hmac.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_info.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_kdf.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_lock.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_mac.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_nonce.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_privwrite.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_random.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_read.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_secureboot.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_selftest.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_sha.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_sign.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_updateextra.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_verify.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_basic_write.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/basic/atca_helpers.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="crypto" displayName="crypto" projectFiles="true">
+            <logicalFolder name="hashes" displayName="hashes" projectFiles="true">
+              <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/hashes/sha1_routines.c</itemPath>
+              <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/hashes/sha2_routines.c</itemPath>
+            </logicalFolder>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/atca_crypto_sw_ecdsa.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/atca_crypto_sw_rand.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/atca_crypto_sw_sha1.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/crypto/atca_crypto_sw_sha2.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="hal" displayName="hal" projectFiles="true">
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/hal/atca_hal.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/hal/atca_i2c_hal.c</itemPath>
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/hal/hal_i2c_timer.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="host" displayName="host" projectFiles="true">
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/host/atca_host.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="jwt" displayName="jwt" projectFiles="true">
+            <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/jwt/atca_jwt.c</itemPath>
+          </logicalFolder>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_cfgs.c</itemPath>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_command.c</itemPath>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_device.c</itemPath>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_execution.c</itemPath>
+          <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/atca_iface.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="drivers" displayName="drivers" projectFiles="true">
+          <itemPath>mcc_generated_files/drivers/spi_master.c</itemPath>
+          <itemPath>mcc_generated_files/drivers/timeout.c</itemPath>
+          <itemPath>mcc_generated_files/drivers/i2c_simple_master.c</itemPath>
+          <itemPath>mcc_generated_files/drivers/uart.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="mqtt" displayName="mqtt" projectFiles="true">
+          <logicalFolder name="mqtt_comm_bsd"
+                         displayName="mqtt_comm_bsd"
+                         projectFiles="true">
+            <itemPath>mcc_generated_files/mqtt/mqtt_comm_bsd/mqtt_comm_layer.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="mqtt_core" displayName="mqtt_core" projectFiles="true">
+            <itemPath>mcc_generated_files/mqtt/mqtt_core/mqtt_core.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="mqtt_exchange_buffer"
+                         displayName="mqtt_exchange_buffer"
+                         projectFiles="true">
+            <itemPath>mcc_generated_files/mqtt/mqtt_exchange_buffer/mqtt_exchange_buffer.c</itemPath>
+          </logicalFolder>
+          <itemPath>mcc_generated_files/mqtt/mqtt_packetTransfer_interface.c</itemPath>
+          <itemPath>mcc_generated_files/mqtt/mqtt_winc_adapter.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="src" displayName="src" projectFiles="true">
+          <itemPath>mcc_generated_files/src/pin_manager.c</itemPath>
+          <itemPath>mcc_generated_files/src/cpuint.c</itemPath>
+          <itemPath>mcc_generated_files/src/spi0.c</itemPath>
+          <itemPath>mcc_generated_files/src/protected_io.S</itemPath>
+          <itemPath>mcc_generated_files/src/rtc.c</itemPath>
+          <itemPath>mcc_generated_files/src/twi0_master.c</itemPath>
+          <itemPath>mcc_generated_files/src/adc0.c</itemPath>
+          <itemPath>mcc_generated_files/src/usart2.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="winc" displayName="winc" projectFiles="true">
+          <logicalFolder name="driver" displayName="driver" projectFiles="true">
+            <itemPath>mcc_generated_files/winc/driver/winc_spi.c</itemPath>
+            <itemPath>mcc_generated_files/winc/driver/winc_adapter.c</itemPath>
+            <itemPath>mcc_generated_files/winc/driver/winc_hif.c</itemPath>
+            <itemPath>mcc_generated_files/winc/driver/winc_asic.c</itemPath>
+            <itemPath>mcc_generated_files/winc/driver/winc_drv.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="m2m" displayName="m2m" projectFiles="true">
+            <itemPath>mcc_generated_files/winc/m2m/m2m_ssl.c</itemPath>
+            <itemPath>mcc_generated_files/winc/m2m/m2m_wifi.c</itemPath>
+            <itemPath>mcc_generated_files/winc/m2m/m2m_periph.c</itemPath>
+            <itemPath>mcc_generated_files/winc/m2m/m2m_ota.c</itemPath>
+            <itemPath>mcc_generated_files/winc/m2m/m2m_fwinfo.c</itemPath>
+            <itemPath>mcc_generated_files/winc/m2m/m2m_crypto.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="socket" displayName="socket" projectFiles="true">
+            <itemPath>mcc_generated_files/winc/socket/socket.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="spi_flash" displayName="spi_flash" projectFiles="true">
+            <itemPath>mcc_generated_files/winc/spi_flash/flexible_flash.c</itemPath>
+            <itemPath>mcc_generated_files/winc/spi_flash/spi_flash.c</itemPath>
+          </logicalFolder>
+        </logicalFolder>
+        <itemPath>mcc_generated_files/mcc.c</itemPath>
+        <itemPath>mcc_generated_files/delay.c</itemPath>
+        <itemPath>mcc_generated_files/device_config.c</itemPath>
+        <itemPath>mcc_generated_files/application_manager.c</itemPath>
+        <itemPath>mcc_generated_files/debug_print.c</itemPath>
+        <itemPath>mcc_generated_files/led.c</itemPath>
+        <itemPath>mcc_generated_files/sensors_handling.c</itemPath>
+        <itemPath>mcc_generated_files/time_service.c</itemPath>
+        <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/CryptoAuth_init.c</itemPath>
+      </logicalFolder>
+      <itemPath>main.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>Makefile</itemPath>
+      <itemPath>MyConfig.mc3</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>mcc_generated_files</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="GOOGLE_IOT" type="2">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <targetDevice>ATmega4808</targetDevice>
+        <targetHeader></targetHeader>
+        <targetPluginBoard></targetPluginBoard>
+        <platformTool>nEdbgTool</platformTool>
+        <languageToolchain>XC8</languageToolchain>
+        <languageToolchainVersion>2.10</languageToolchainVersion>
+        <platform>3</platform>
+      </toolsSet>
+      <packs>
+        <pack name="ATmega_DFP" vendor="Microchip" version="2.0.12"/>
+      </packs>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+        <archiverTool>
+        </archiverTool>
+        <loading>
+          <useAlternateLoadableFile>false</useAlternateLoadableFile>
+          <parseOnProdLoad>false</parseOnProdLoad>
+          <alternateLoadableFile></alternateLoadableFile>
+        </loading>
+        <subordinates>
+        </subordinates>
+      </compileType>
+      <makeCustomizationType>
+        <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
+        <makeCustomizationPreStep></makeCustomizationPreStep>
+        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStep></makeCustomizationPostStep>
+        <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
+        <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
+        <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
+      </makeCustomizationType>
+      <HI-TECH-COMP>
+        <property key="additional-warnings" value="true"/>
+        <property key="asmlist" value="true"/>
+        <property key="default-bitfield-type" value="true"/>
+        <property key="default-char-type" value="true"/>
+        <property key="define-macros" value="GOOGLE_IOT"/>
+        <property key="disable-optimizations" value="false"/>
+        <property key="extra-include-directories"
+                  value="mcc_generated_files\mqtt;mcc_generated_files\config;mcc_generated_files\winc;mcc_generated_files\drivers;mcc_generated_files;mcc_generated_files\CryptoAuthenticationLibrary"/>
+        <property key="favor-optimization-for" value="-speed,+space"/>
+        <property key="garbage-collect-data" value="true"/>
+        <property key="garbage-collect-functions" value="true"/>
+        <property key="identifier-length" value="255"/>
+        <property key="local-generation" value="false"/>
+        <property key="operation-mode" value="pro"/>
+        <property key="opt-xc8-compiler-strict_ansi" value="false"/>
+        <property key="optimization-assembler" value="true"/>
+        <property key="optimization-assembler-files" value="false"/>
+        <property key="optimization-debug" value="false"/>
+        <property key="optimization-invariant-enable" value="false"/>
+        <property key="optimization-invariant-value" value="16"/>
+        <property key="optimization-level" value="-Os"/>
+        <property key="optimization-speed" value="false"/>
+        <property key="optimization-stable-enable" value="false"/>
+        <property key="pack-struct" value="true"/>
+        <property key="preprocess-assembler" value="true"/>
+        <property key="short-enums" value="true"/>
+        <property key="undefine-macros" value=""/>
+        <property key="use-cci" value="false"/>
+        <property key="use-iar" value="false"/>
+        <property key="verbose" value="false"/>
+        <property key="warning-level" value="-3"/>
+        <property key="what-to-do" value="ignore"/>
+      </HI-TECH-COMP>
+      <HI-TECH-LINK>
+        <property key="additional-options-checksum" value=""/>
+        <property key="additional-options-code-offset" value=""/>
+        <property key="additional-options-command-line" value=""/>
+        <property key="additional-options-errata" value=""/>
+        <property key="additional-options-extend-address" value="false"/>
+        <property key="additional-options-trace-type" value=""/>
+        <property key="additional-options-use-response-files" value="false"/>
+        <property key="backup-reset-condition-flags" value="false"/>
+        <property key="calibrate-oscillator" value="false"/>
+        <property key="calibrate-oscillator-value" value="0x3400"/>
+        <property key="clear-bss" value="true"/>
+        <property key="code-model-external" value="wordwrite"/>
+        <property key="code-model-rom" value=""/>
+        <property key="create-html-files" value="false"/>
+        <property key="data-model-ram" value=""/>
+        <property key="data-model-size-of-double" value="24"/>
+        <property key="data-model-size-of-double-gcc" value="no-short-double"/>
+        <property key="data-model-size-of-float" value="24"/>
+        <property key="data-model-size-of-float-gcc" value="no-short-float"/>
+        <property key="display-class-usage" value="false"/>
+        <property key="display-hex-usage" value="false"/>
+        <property key="display-overall-usage" value="true"/>
+        <property key="display-psect-usage" value="false"/>
+        <property key="extra-lib-directories" value=""/>
+        <property key="fill-flash-options-addr" value=""/>
+        <property key="fill-flash-options-const" value=""/>
+        <property key="fill-flash-options-how" value="0"/>
+        <property key="fill-flash-options-inc-const" value="1"/>
+        <property key="fill-flash-options-increment" value=""/>
+        <property key="fill-flash-options-seq" value=""/>
+        <property key="fill-flash-options-what" value="0"/>
+        <property key="format-hex-file-for-download" value="false"/>
+        <property key="initialize-data" value="true"/>
+        <property key="input-libraries" value="libm"/>
+        <property key="keep-generated-startup.as" value="false"/>
+        <property key="link-in-c-library" value="true"/>
+        <property key="link-in-c-library-gcc" value=""/>
+        <property key="link-in-peripheral-library" value="false"/>
+        <property key="managed-stack" value="false"/>
+        <property key="opt-xc8-linker-file" value="false"/>
+        <property key="opt-xc8-linker-link_startup" value="false"/>
+        <property key="opt-xc8-linker-serial" value=""/>
+        <property key="program-the-device-with-default-config-words" value="true"/>
+        <property key="remove-unused-sections" value="true"/>
+      </HI-TECH-LINK>
+      <XC8-CO>
+        <property key="coverage-enable" value=""/>
+      </XC8-CO>
+      <XC8-config-global>
+        <property key="advanced-elf" value="true"/>
+        <property key="gcc-opt-driver-new" value="true"/>
+        <property key="gcc-opt-std" value="-std=c99"/>
+        <property key="gcc-output-file-format" value="dwarf-3"/>
+        <property key="omit-pack-options" value="false"/>
+        <property key="output-file-format" value="-mcof,+elf"/>
+        <property key="stack-size-high" value="auto"/>
+        <property key="stack-size-low" value="auto"/>
+        <property key="stack-size-main" value="auto"/>
+        <property key="stack-type" value="compiled"/>
+        <property key="user-pack-device-support" value=""/>
+        <appendMe value="-Wno-pragmas"/>
+      </XC8-config-global>
+      <nEdbgTool>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="communication.activationmode" value="nohv"/>
+        <property key="communication.interface" value="updi"/>
+        <property key="communication.speed" value="0.500"/>
+        <property key="debugoptions.useswbreakpoints" value="true"/>
+        <property key="firmware.path"
+                  value="Press to browse for a specific firmware version"/>
+        <property key="firmware.update.action" value="firmware.update.use.latest"/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="true"/>
+        <property key="memories.configurationmemory" value="true"/>
+        <property key="memories.configurationmemory2" value="true"/>
+        <property key="memories.dataflash" value="true"/>
+        <property key="memories.eeprom" value="true"/>
+        <property key="memories.exclude.configurationmemory" value="true"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram.ranges"
+                  value="${memories.instruction.ram.ranges}"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.ranges" value="0-5fff"/>
+        <property key="poweroptions.powerenable" value="false"/>
+        <property key="programoptions.eraseb4program" value="true"/>
+        <property key="programoptions.preservedataflash" value="false"/>
+        <property key="programoptions.preservedataflash.ranges"
+                  value="${memories.dataflash.default}"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveeeprom.ranges" value="1400-14ff"/>
+        <property key="programoptions.preserveprogram.ranges" value=""/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.programuserotp" value="false"/>
+        <property key="voltagevalue" value=""/>
+      </nEdbgTool>
+    </conf>
+  </confs>
+</configurationDescriptor>
