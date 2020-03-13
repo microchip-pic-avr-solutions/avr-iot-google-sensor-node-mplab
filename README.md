@@ -1,4 +1,5 @@
-# Microchip AVR IoT Application
+# Getting Started Guide: Microchip AVR-IoT WG (Wireless for Google Cloud) Application
+
 
 Devices: \| **ATmega4808(MCU)** \| **WINC1510(Wi-Fi®)** \| **ECC608(CryptoAuthLib)** \|
 
@@ -7,6 +8,85 @@ Devices: \| **ATmega4808(MCU)** \| **WINC1510(Wi-Fi®)** \| **ECC608(CryptoAuthL
 ![Board](images/boardGoogle.png)
 
 ---
+## Getting Started Guide
+   + Below describes the Out of Box (OOB) operation of the development board. 
+   + More detailed information can be found further below this document.
+   + For accessing production hex files, release notes, and Known Issues please click the [release tab](https://github.com/microchip-pic-avr-solutions/avr-iot-google-sensor-node-mplab/releases)
+
+### Materials
+   + Internet Connection Device
+   + Wifi / Network Device
+   + Personal Computer
+   + Serial Terminal (optional)
+
+### Operation
+  1. Connect board to PC using USB-micro cable. 
+     + The LEDs will **Cycle** upon startup: **BLUE-->GREEN-->YELLOW-->RED**.
+     + Short delay: **BLUE-->GREEN-->YELLOW-->RED**.
+
+  2. The **BLUE LED** will begin to blink, this indicates the board is attempting to join the local **ACCESS POINT**.
+
+  3. On connecting to **Access Point** the blinking will stop, and the **LED** will become **STATIC**.
+     + By **Default**, the device will attempt to use:
+      + **WPA/WPA2**  
+      + Network Name: **MCHP.IOT**    
+      + Password: **microchip**
+
+  4. To use custom Credentials, the board will appear on the PC enumerated as a mass storage device under the name **CURIOSITY**. 
+     + Credentials can be downloaded as the file **WIFI.CFG** using the **CLICK-ME.HTM** file stored on the **CURIOSITY** device.
+     
+     ![URL Hosted Credentials](images/wifiCredentialsWeb.png)
+
+  5. After becoming connected to the **ACCESS POINT**, the **GREEN LED** will begin to blink, this indicates the board is attempting to establish a web connection with cloud providing service. 
+     + **GREEN LED** will stop blinking and remain **ON** when connection is established.
+     + Using the in-module TCP/IP stack pre-configured with provisioned credentials; the device establishes a **MQTT** connection with the IoT Broker provider (Google).
+
+      ![Status Display](images/gcpConnection.png)
+
+  6. After successfully establishing MQTT connection, the **YELLOW LED** will blink. (250 mSec)
+     + Indicating data exchanged between the End-Device (AVR-IoT), and BROKER (Google). (every (1) Sec)
+
+  7. Connect to the www.avr-iot.com/gcp/**{deviceID}**, or www.pic-iot.com/gcp/**{deviceID}**, device specific website to view publish/subscribe data. 
+     + **{deviceID}** is the unique identifier for the development board.
+     + This page can be also be found via launching the **CLICK-ME.HTM** file on the **CURIOSITY** device.
+     + This page can be also be found by scanning the QR code on the back of the development board. 
+
+     ![Connecting](images/wifiStatus.png)
+
+  8. There will be (2) scrolling graphs visible.
+      + (1) shows temperature sensor
+      + (1) shows the light sensor value. 
+
+     ![GcpGraphs](images/telemetryGraphs.png)
+
+  9. Click on the **What's Next** button beneath the graphs to peform action(s) from the cloud.
+  
+     ![GcpWhatsNext](images/gcpWhatsNext.png)
+
+  10. Select the **Implement a Cloud-Controlled Actuator** to demostrate cloud performed behaviors.
+
+      ![GcpNext](images/gcpNext.png)
+
+  11. Click on the **Learn More** button to expand page interface. 
+      + Scroll to the bottom of **Step 5** where a panel will read **Control Your Device**.
+
+      ![GcpLearnMore](images/gcpLearnMore.png)
+
+  12. By default only a **Toggle** feature is supported by the firmware.
+      + **Custom implmentations are described further on above the panel.**
+
+      ![GcpControl](images/gcpControl.png)
+
+  13. Trigger an action by simply pressing the **Send to device** button beneath actuator fields. 
+     + All Actuator data is sent as one message when the **Send to device** button is pressed.
+     + When **Toggled** the **YELLOW LED** will remain on for **(2) Seconds**.
+     + When unselected, the **YELLOW LED** will remain off for **(2) Seconds**.
+     + Because **Toggle** manipulates the **desired** state; the state **must** be changed to observe the behavior. 
+
+   14. If desired, additional basic messaging can be seen to a connected Serial Terminal at the expected 9600 baud rate. 
+       
+	   ![DeltaSubTerminalMessage](images/serialSubscribe.png)
+
 
 ## Requirements
 
@@ -85,44 +165,6 @@ General Out-Of-Box operation is as described below:
 1. The AVR-IoT board under the Wireless for Google Cloud (WG) variation is shipped pre-provisioned for coordination with the Google Cloud system.
 2. Security is achieved by using the built-in Transport Layer Security (TLS) 'stack' configured within the WINC Wi-Fi Module.
 3. This process has been performed to allow for an Out Of Box (OOB) operation of the AVR-IoT development board along with supporting web page.
-
----
-
-## Out Of Box (OOB) Operation
-
-  1. Connect board to PC using USB-micro cable. 
-     + The LEDs will **Cycle** upon startup: **BLUE-->GREEN-->YELLOW-->RED**, short delay, **BLUE-->GREEN-->YELLOW-->RED**.
-
-  2. The **BLUE LED** will begin to blink, this indicates the board is attempting to join the local **ACCESS POINT**. 
-
-  3. Update the Wi-Fi Credentials; upon connecting the blinking will stop, and the **LED** will become **STATIC**. Below are the easiest methods to update credentials.
-     + The board will appear on the PC enumerated as a mass storage device under the name **CURIOSITY**. Credentials can be downloaded as the file **WIFI.CFG** using the **CLICK-ME.HTM** file stored on the **CURIOSITY** device. This will launch the URL: https://avr-iot.com/device/{DeviceId} The file produced with entered credentials is produced through the WINC module, and no information is shared through the internet. Drag and Drop, or Copy and Paste the **WIFI.CFG** file onto the **CURIOSITY** device to load new credentials onto the IoT demonstration board. 
-     + Use a **Serial Terminal** to update the Wi-Fi Credentials loaded onto the WINC module. Use the Command Line Interface (CLI) supported command ``wifi host_name,pass_code,auth_type`` | host_name/pass_code are entered strings, auth_type is int value: (0: open, 1: WEP, 2: WPA).
-
-![URL Hosted Credentials](images/wifiCredentialsWeb.png)
-
-![WiFi Config](images/wifiNotepad.png)
-
-![Serial Credentials](images/serialWiFi.png)
-
-  4. After becoming connected to the **ACCESS POINT**, the **GREEN LED** will begin to blink, this indicates the board is attempting to establish a TCP/IP connection with the cloud providing service. The **GREEN LED** will stop blinking and become **STATIC** when the **Transport Layer Security (TLS)** connection is established.
-
-  ![Status Display](images/wifiStatus.png)
-
-  5. Once the TCP/IP connection is made, the device will attempt a **MQTT** connection with the IoT Broker provider. After becoming connected, the **YELLOW LED** will blink, indicating data exchanged between the End-Device (AVR-IoT), and BROKER (AWS). 
-
-  6. Connect to the www.avr-iot.com, or www.pic-iot.com, device specific website to view publish/subscribe data. This page can be found via launching the **CLICK-ME.HTM** file on the **CURIOSITY** device.
-     + There will be (2) scrolling graphs visible. (1) shows temperature sensor, (1) shows the light sensor value. Additional graphs can be produced altered through the published topic message. 
-     + There will be (3) rows beneath the **Control Your Device** section used to publish subscription data to end-devices through the broker. These example rows demonstrate options for: Toggle (boolean), Text Field (String), Sliders (integer)
-![Telemetry Data](images/telemetryGraphs.png)
-
-![Subscribe Data](images/subscribeData.png)
-
-  7. When connection is established with the Broker, the publish message topic will be printed to a serial terminal through the CDC-USB bridge at a 9600 Baud Rate.
-     + When a topic subscription is received, the payload is printed in JSON format to the terminal. 
-     + Topic subscription message are sent when the 'Send to device' push button on the webpage is pressed. This will send the data of the toggle switch, text field, and slider options. 
-
-![Serial Subscribe Message](images/serialSubscribe.png)
 
 ---
 
