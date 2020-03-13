@@ -168,6 +168,58 @@ General Out-Of-Box operation is as described below:
 
 ---
 
+## Detailed Operation
+
+  0. There are three possible variations within application behavior possible by holding push buttons on startup
+     + Default behavior: No Button Pressed
+     + Soft AP: SW0 is Held on startup (see description farther in document)
+     + Default behavior Restore DEFAULT Credentials: SW0 & SW1 Held on startup. This state is reflected by **BLINKING GREEN LED** until a Wi-Fi connection is established. 
+          + After a successful connection; last VALID CREDIENTIALS are maintained in the WINC for next power cycle connection. 
+
+  1. Connect board to PC using USB-micro cable. 
+     + The LEDs will **Cycle** upon startup: **BLUE-->GREEN-->YELLOW-->RED**, short delay, **BLUE-->GREEN-->YELLOW-->RED**.
+
+  2. The **BLUE LED** will begin to blink, this indicates the board is attempting to join the local **ACCESS POINT**. 
+
+  3. Update the Wi-Fi Credentials; upon connecting the blinking will stop, and the **LED** will become **STATIC**. Below are the easiest methods to update credentials.
+     + The board will appear on the PC enumerated as a mass storage device under the name **CURIOSITY**. 
+     + Credentials can be downloaded as the file **WIFI.CFG** using the **CLICK-ME.HTM** file stored on the **CURIOSITY** device. 
+     + This will launch the URL: https://avr-iot.com/device/{DeviceId} The file produced with entered credentials is produced through the WINC module, and no information is shared through the internet. 
+     + Drag and Drop, or Copy and Paste the **WIFI.CFG** file onto the **CURIOSITY** device to load new credentials onto the IoT demonstration board. 
+     + Use a **Serial Terminal** to update the Wi-Fi Credentials loaded onto the WINC module. 
+     + Use the Command Line Interface (CLI) supported command ``wifi host_name,pass_code,auth_type`` | host_name/pass_code are entered strings, auth_type is int value: (0: open, 1: WEP, 2: WPA).
+
+![URL Hosted Credentials](images/wifiCredentialsWeb.png)
+
+![WiFi Config](images/wifiNotepad.png)
+
+![Serial Credentials](images/serialWiFi.png)
+
+  4. After becoming connected to the **ACCESS POINT**, the **GREEN LED** will begin to blink, this indicates the board is attempting to establish a TCP/IP connection with the cloud providing service. 
+     + The **GREEN LED** will stop blinking and become **STATIC** when the **Transport Layer Security (TLS)** connection is established.
+
+  ![Status Display](images/wifiStatus.png)
+
+  5. Once the TCP/IP connection is made, the device will attempt a **MQTT** connection with the IoT Broker provider. 
+     + After becoming connected, the **YELLOW LED** will blink, indicating data exchanged between the End-Device (AVR-IoT), and BROKER (AWS).
+     + When using the **Toggle** feature described **below**; the **YELLOW LED** will remain ON/OFF for **(2) Sec** intevals before resuming normal operation.
+
+  6. Connect to the www.avr-iot.com/google/**{DeviceID}**, or www.pic-iot.com/google/**{DeviceID}**, device specific website to view publish/subscribe data. 
+     + This page can be found via launching the **CLICK-ME.HTM** file on the **CURIOSITY** device.
+     + There will be (2) scrolling graphs visible. (1) shows temperature sensor, (1) shows the light sensor value.
+     + There will be (3) rows beneath the **Control Your Device** section used to publish subscription data to end-devices through the broker. 
+     + These example rows demonstrate options for: Toggle (boolean), Text Field (String), Sliders (integer)
+
+![Telemetry Data](images/telemetryGraphs.png)
+
+![Subscribe Data](images/subscribeData.png)
+
+  7. When connection is established with the Broker, the publish message topic will be printed to a serial terminal through the CDC-USB bridge at a 9600 Baud Rate.
+     + When a topic subscription is received, the payload is printed in JSON format to the terminal. 
+     + Topic subscription message are sent when the 'Send to device' push button on the webpage is pressed. This will send the data of the toggle switch, text field, and slider options. 
+
+![Serial Subscribe Message](images/serialSubscribe.png)
+
 ## Additional Operations
 
 ### Command Line Interface
