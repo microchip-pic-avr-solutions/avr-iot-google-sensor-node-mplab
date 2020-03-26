@@ -68,6 +68,9 @@ void debug_setSeverity(debug_severity_t debug_level);
 void debug_setPrefix(const char *prefix);
 void debug_init(const char *prefix);
 
+#define debug_printIoTAppMsg(fmt, ...) \
+do { if (ENABLE_DEBUG_IOT_APP_MSGS) debug_printer(SEVERITY_NONE, LEVEL_NORMAL, fmt CSI_RESET, ##__VA_ARGS__); } while (0)
+
 #define debug_print(fmt, ...) \
 do { if (CFG_DEBUG_PRINT) debug_printer(SEVERITY_DEBUG, LEVEL_NORMAL, fmt CSI_RESET, ##__VA_ARGS__); } while (0)
 

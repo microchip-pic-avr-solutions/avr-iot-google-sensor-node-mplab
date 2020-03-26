@@ -128,8 +128,8 @@ static void receivedFromCloud(uint8_t *topic, uint8_t *payload)
             holdCount = 2;
         }
     }
-    debug_printer(SEVERITY_NONE, LEVEL_NORMAL, "topic: %s", topic);
-    debug_printer(SEVERITY_NONE, LEVEL_NORMAL, "payload: %s", payload);
+    debug_printIoTAppMsg("topic: %s", topic);
+    debug_printIoTAppMsg("payload: %s", payload);
 }
 
 void application_init()
