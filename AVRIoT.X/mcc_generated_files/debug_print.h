@@ -61,7 +61,6 @@ typedef enum
    LEVEL_ERROR
 }debug_errorLevel_t;
 
-#include "banner.h"
 
 void debug_printer(debug_severity_t debug_severity, debug_errorLevel_t error_level, char* format, ...);
 void debug_setSeverity(debug_severity_t debug_level);

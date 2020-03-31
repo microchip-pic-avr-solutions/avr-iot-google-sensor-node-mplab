@@ -70,7 +70,8 @@ static uint8_t index = 0;
 static bool commandTooLongFlag = false;
 
 const char * const cli_version_number             = "3.0";
-const char * const firmware_version_number        = "2.0.2";
+
+const char * const firmware_version_number        = "3.0.0";
 
 static void command_received(char *command_text);
 static void reset_cmd(char *pArg);
