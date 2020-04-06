@@ -29,7 +29,7 @@ typedef union
         unsigned amConnectingSocket : 1;
         unsigned amSoftAP: 1;
         unsigned amDefaultCred : 1;
-        unsigned haveSocket : 1;
+        unsigned haveDataConnection : 1;
     };
 } shared_networking_params_t;
 

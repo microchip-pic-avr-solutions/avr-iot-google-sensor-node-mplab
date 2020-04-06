@@ -234,9 +234,9 @@ static void set_wifi_auth(char *ssid_pwd_auth)
         {
             MQTT_Close(MQTT_GetClientConnectionInfo());
         }        
-        if (shared_networking_params.haveSocket)    
+        if (shared_networking_params.haveDataConnection)    
         {   // Disconnect from Socket if active
-            shared_networking_params.haveSocket = 0;
+            shared_networking_params.haveDataConnection = 0;
             MQTT_Disconnect(MQTT_GetClientConnectionInfo());
         } 
 		wifi_disconnectFromAp();
@@ -262,7 +262,7 @@ static void reconnect_cmd(char *pArg)
     LED_modeRed(ledState);
     ledState.Full2Sec = LED_BLINK;
     LED_modeGreen(ledState);
-    shared_networking_params.haveSocket = 0;
+    shared_networking_params.haveDataConnection = 0;
     MQTT_Disconnect(MQTT_GetClientConnectionInfo());
     printf("OK\r\n");
 }

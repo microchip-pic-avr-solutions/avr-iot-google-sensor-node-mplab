@@ -178,6 +178,7 @@ static void startMqttConnectionTimeout()
 {
     debug_printError("MQTT: MQTT reset timer is created");
     timeout_create(&mqttTimeoutTaskTimer, CLOUD_MQTT_TIMEOUT_COUNT);
+    shared_networking_params.haveDataConnection = 0;
     cloudStatus.waitingForMQTT = true;
 }
 
@@ -211,7 +212,7 @@ static void setHaveSocketFor(socketState_t socketState, int32_t thisAge)
     
     if(cloudContext.cloudIsConnected())
     {
-        shared_networking_params.haveSocket = 1;
+        shared_networking_params.haveDataConnection = 1;
         if(lastAge != thisAge)
         {
             debug_printInfo("CLOUD: Uptime %lus SocketState (%d) MQTT (%d)", thisAge , socketState, MQTT_GetConnectionState());
