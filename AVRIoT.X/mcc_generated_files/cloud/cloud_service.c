@@ -92,7 +92,7 @@ cloudContext_t cloudContext =
 };
 
 
-void CLOUD_setInitFlag(void)
+void CLOUD_reset(void)
 {
     debug_printError("CLOUD: Cloud Reset");
     cloudStatus.cloudInitialized = false;
@@ -130,7 +130,7 @@ bool CLOUD_checkIsConnected(void)
 uint32_t mqttTimeoutTask(void *payload) 
 {
     debug_printError("CLOUD: MQTT Connection Timeout");
-    CLOUD_setInitFlag();
+    CLOUD_reset();
     
     cloudStatus.waitingForMQTT = false;
     
@@ -178,6 +178,7 @@ static void startMqttConnectionTimeout()
 {
     debug_printError("MQTT: MQTT reset timer is created");
     timeout_create(&mqttTimeoutTaskTimer, CLOUD_MQTT_TIMEOUT_COUNT);
+    shared_networking_params.haveDataConnection = 0;
     cloudStatus.waitingForMQTT = true;
 }
 
@@ -211,7 +212,7 @@ static void setHaveSocketFor(socketState_t socketState, int32_t thisAge)
     
     if(cloudContext.cloudIsConnected())
     {
-        shared_networking_params.haveSocket = 1;
+        shared_networking_params.haveDataConnection = 1;
         if(lastAge != thisAge)
         {
             debug_printInfo("CLOUD: Uptime %lus SocketState (%d) MQTT (%d)", thisAge , socketState, MQTT_GetConnectionState());
@@ -374,11 +375,6 @@ static void CLOUD_handleTransmitDebugMessage(void)
         default:
             break;
     }
-}
-
-bool CLOUD_checkIsDisconnected(void)
-{
-    return cloudContext.cloudIsDisconnected();
 }
 
 static void dnsHandler(uint8_t* domainName, uint32_t serverIP)

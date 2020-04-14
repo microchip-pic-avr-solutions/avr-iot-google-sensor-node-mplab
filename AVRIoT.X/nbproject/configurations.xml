@@ -169,14 +169,13 @@
         <itemPath>mcc_generated_files/delay.h</itemPath>
         <itemPath>mcc_generated_files/mcc.h</itemPath>
         <itemPath>mcc_generated_files/application_manager.h</itemPath>
-        <itemPath>mcc_generated_files/debug_print.h</itemPath>
         <itemPath>mcc_generated_files/led.h</itemPath>
         <itemPath>mcc_generated_files/sensors_handling.h</itemPath>
         <itemPath>mcc_generated_files/time_service.h</itemPath>
-        <itemPath>mcc_generated_files/banner.h</itemPath>
         <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/cryptoauthlib.h</itemPath>
         <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/CryptoAuth_init.h</itemPath>
         <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/cryptoauthlib_config.h</itemPath>
+        <itemPath>mcc_generated_files/debug_print.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
