@@ -40,7 +40,7 @@ SOFTWARE.
 #include "cloud/mqtt_service.h"
 #include "cloud/crypto_client/crypto_client.h"
 #include "cloud/wifi_service.h"
-#include "CryptoAuthenticationLibrary/CryptoAuth_init.h"
+#include "CryptoAuth_init.h"
 #include "../mcc_generated_files/sensors_handling.h"
 #include "credentials_storage/credentials_storage.h"
 #include "led.h"
