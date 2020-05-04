@@ -28,7 +28,6 @@
  * THIS SOFTWARE.
 */
 
-#include <stdbool.h>
 #include "CryptoAuth_init.h"
 
 struct atca_command  _gmyCommand;
@@ -45,7 +44,6 @@ ATCAIfaceCfg secureCfg = {
     .rx_retries             =   20
 };
 
-
 bool CryptoAuth_Initialize(void)
 {
     uint8_t calInitialzeStatus; 
@@ -60,4 +58,3 @@ bool CryptoAuth_Initialize(void)
        return true;
     }
 }
-

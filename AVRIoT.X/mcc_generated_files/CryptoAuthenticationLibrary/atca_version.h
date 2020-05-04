@@ -1,9 +1,7 @@
-/*
-
+/**
  * \file
- * \brief CryptoAuthLib Basic API methods - a simple crypto authentication API.
- * These methods manage a global ATCADevice object behind the scenes. They also
- * manage the wake/idle state transitions so callers don't need to.
+ *
+ * \brief  Microchip CryptoAuth Library Version
  *
  * \copyright (c) 2015-2018 Microchip Technology Inc. and its subsidiaries.
  *
@@ -26,9 +24,12 @@
  * LIABILITY ON ALL CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED
  * THE AMOUNT OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR
  * THIS SOFTWARE.
-*/
+ */
 
-#include "cryptoauthlib_config.h"
-#include "CryptoAuthenticationLibrary/cryptoauthlib.h"
+#ifndef _ATCA_VERSION_H
+#define _ATCA_VERSION_H
 
-bool CryptoAuth_Initialize(void);
+// Version format yyyymmdd
+#define ATCA_LIBRARY_VERSION    "20191122"
+
+#endif /* _ATCA_VERSION_H */
