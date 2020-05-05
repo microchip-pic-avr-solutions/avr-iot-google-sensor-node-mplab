@@ -23,21 +23,17 @@
 #ifndef _UART_H
 #define _UART_H
 
-
+/**
+  Section: Included Files
+ */
 #include <stdint.h>
 #include <stddef.h>
 #include "../include/usart2.h"
 
-/**
-\typedef This typdef is a list of all the configuration names added/selected by the user.
-*/
 typedef enum { 
-    CLI /**<UART Name */
+    CLI
 } uart_configurations_t;
 
-/**
-\typedef This typdef is a list of all the functions by the user.
-*/
 typedef struct { uint8_t (*Read)(void); void (*Write)(uint8_t txdata); bool (*TransmitReady)(void); bool (*DataReady)(void); void (*SetTxISR)(void (* interruptHandler)(void)); void (*RxDefaultISR)(void); void (*SetRxISR)(void (* interruptHandler)(void)); bool (*TransmitDone)(void); void (*TxDefaultISR)(void); void (*Initialize)(void);  } uart_functions_t;
 
 extern const uart_functions_t uart[];

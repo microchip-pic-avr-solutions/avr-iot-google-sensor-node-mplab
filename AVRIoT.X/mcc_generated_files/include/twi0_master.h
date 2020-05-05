@@ -1,3 +1,12 @@
+/**
+  @Company
+    Microchip Technology Inc.
+
+  @Description
+    This Source file provides APIs.
+    Generation Information :
+    Driver Version    :   1.0.0
+*/
 /*
     (c) 2018 Microchip Technology Inc. and its subsidiaries. 
     
@@ -21,6 +30,7 @@
     SOFTWARE.
 */
 
+
 #ifndef TWI0_MASTER_H
 #define TWI0_MASTER_H
 
@@ -36,21 +46,20 @@ extern "C" {
 #define TWI0_BAUD(F_SCL, T_RISE)    \
     ((((((float)10000000 / (float)F_SCL)) - 10 - ((float)10000000 * T_RISE / 1000000))) / 2)
 
-
 typedef enum {
-	I2C_NOERR, // The message was sent.
-	I2C_BUSY,  // Message was NOT sent, bus was busy.
-	I2C_FAIL   // Message was NOT sent, bus failure
-	           // If you are interested in the failure reason,
-	           // Sit on the event call-backs.
+    I2C0_NOERR,  // The message was sent.
+    I2C0_BUSY,   // Message was NOT sent, bus was busy.
+    I2C0_FAIL    // Message was NOT sent, bus failure
+                // If you are interested in the failure reason,
+                // Sit on the event call-backs.
 } twi0_error_t;
 
-typedef enum { I2C_STOP = 1, I2C_RESTART_READ, I2C_RESTART_WRITE, I2C_CONTINUE, I2C_RESET_LINK } twi0_operations_t;
+typedef enum { I2C0_STOP = 1, I2C0_RESTART_READ, I2C0_RESTART_WRITE, I2C0_CONTINUE, I2C0_RESET_LINK } twi0_operations_t;
 
 typedef twi0_operations_t (*twi0_callback_t)(void *funPtr);
 
 typedef uint8_t twi0_address_t;
-typedef twi0_address_t i2c_address_t;
+//typedef twi0_address_t i2c_address_t;
 // common callback responses
 twi0_operations_t I2C0_SetReturnStopCallback(void *funPtr);
 twi0_operations_t I2C0_SetReturnResetCallback(void *funPtr);
@@ -105,15 +114,11 @@ twi0_error_t I2C0_MasterOperation(bool read);
 /**
  * \brief Identical to I2C0_MasterOperation(false);
  */
-
 twi0_error_t I2C0_MasterWrite(void); // to be depreciated
-
 
 /**
  * \brief Identical to I2C0_MasterOperation(true);
  */
-
-
 twi0_error_t I2C0_MasterRead(void); // to be depreciated
 
 /**
@@ -186,13 +191,6 @@ void I2C0_SetDataNackCallback(twi0_callback_t cb, void *funPtr);
  * \return Nothing
  */
 void I2C0_SetTimeoutCallback(twi0_callback_t cb, void *funPtr);
-
-/**
- * \brief In a polled implementation, call this function in a loop to execute the FSM
- *
- * \return Nothing
- */
-void I2C0_Poller(void);
 
 /**
  * \brief Set Address to be called when there was aa address reception.

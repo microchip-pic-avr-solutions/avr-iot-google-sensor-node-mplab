@@ -26,7 +26,6 @@
 
 #include "uart.h"   
 
-
 const uart_functions_t uart[] = {   
     {USART2_Read, USART2_Write, USART2_IsTxReady, USART2_IsRxReady, USART2_SetTXISRCb, USART2_DefaultRxIsrCb, USART2_SetRXISRCb, USART2_IsTxDone, USART2_DefaultTxIsrCb, USART2_Initialize }
 };

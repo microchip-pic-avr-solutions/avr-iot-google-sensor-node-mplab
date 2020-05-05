@@ -32,7 +32,7 @@ static twi0_operations_t wr1RegCompleteHandler(void *p)
 {
     I2C0_SetBuffer(p,1);
     I2C0_SetDataCompleteCallback(NULL,NULL);
-    return I2C_CONTINUE;
+    return I2C0_CONTINUE;
 }
 
 void i2c_write1ByteRegister(twi0_address_t address, uint8_t reg, uint8_t data)
@@ -42,7 +42,7 @@ void i2c_write1ByteRegister(twi0_address_t address, uint8_t reg, uint8_t data)
     I2C0_SetBuffer(&reg,1);
     I2C0_SetAddressNackCallback(I2C0_SetRestartWriteCallback,NULL); //NACK polling?
     I2C0_MasterWrite();
-    while(I2C_BUSY == I2C0_Close()); // sit here until finished.
+    while(I2C0_BUSY == I2C0_Close()); // sit here until finished.
 }
 
 void i2c_writeNBytes(twi0_address_t address, void* data, size_t len)
@@ -51,7 +51,7 @@ void i2c_writeNBytes(twi0_address_t address, void* data, size_t len)
     I2C0_SetBuffer(data,len);
     I2C0_SetAddressNackCallback(I2C0_SetRestartWriteCallback,NULL); //NACK polling?
     I2C0_MasterWrite();
-    while(I2C_BUSY == I2C0_Close()); // sit here until finished.
+    while(I2C0_BUSY == I2C0_Close()); // sit here until finished.
 }
 
 /****************************************************************/
@@ -59,7 +59,7 @@ static twi0_operations_t rd1RegCompleteHandler(void *p)
 {
     I2C0_SetBuffer(p,1);
     I2C0_SetDataCompleteCallback(NULL,NULL);
-    return I2C_RESTART_READ;
+    return I2C0_RESTART_READ;
 }
 
 uint8_t i2c_read1ByteRegister(twi0_address_t address, uint8_t reg)
@@ -75,8 +75,8 @@ uint8_t i2c_read1ByteRegister(twi0_address_t address, uint8_t reg)
         I2C0_SetBuffer(&reg,1);
         I2C0_SetAddressNackCallback(I2C0_SetRestartWriteCallback,NULL); //NACK polling?
         I2C0_MasterWrite();
-        while(I2C_BUSY == (e = I2C0_Close())); // sit here until finished.
-        if(e==I2C_NOERR) break;
+        while(I2C0_BUSY == (e = I2C0_Close())); // sit here until finished.
+        if(e==I2C0_NOERR) break;
     }
     
 
@@ -88,7 +88,7 @@ static twi0_operations_t rd2RegCompleteHandler(void *p)
 {
     I2C0_SetBuffer(p,2);
     I2C0_SetDataCompleteCallback(NULL,NULL);
-    return I2C_RESTART_READ;
+    return I2C0_RESTART_READ;
 }
 
 uint16_t i2c_read2ByteRegister(twi0_address_t address, uint8_t reg)
@@ -101,7 +101,7 @@ uint16_t i2c_read2ByteRegister(twi0_address_t address, uint8_t reg)
     I2C0_SetBuffer(&reg,1);
     I2C0_SetAddressNackCallback(I2C0_SetRestartWriteCallback,NULL); //NACK polling?
     I2C0_MasterWrite();
-    while(I2C_BUSY == I2C0_Close()); // sit here until finished.
+    while(I2C0_BUSY == I2C0_Close()); // sit here until finished.
     
     return (result << 8 | result >> 8);
 }
@@ -111,7 +111,7 @@ static twi0_operations_t wr2RegCompleteHandler(void *p)
 {
     I2C0_SetBuffer(p,2);
     I2C0_SetDataCompleteCallback(NULL,NULL);
-    return I2C_CONTINUE;
+    return I2C0_CONTINUE;
 }
 
 void i2c_write2ByteRegister(twi0_address_t address, uint8_t reg, uint16_t data)
@@ -121,7 +121,7 @@ void i2c_write2ByteRegister(twi0_address_t address, uint8_t reg, uint16_t data)
     I2C0_SetBuffer(&reg,1);
     I2C0_SetAddressNackCallback(I2C0_SetRestartWriteCallback,NULL); //NACK polling?
     I2C0_MasterWrite();
-    while(I2C_BUSY == I2C0_Close()); // sit here until finished.
+    while(I2C0_BUSY == I2C0_Close()); // sit here until finished.
 }
 
 /****************************************************************/
@@ -135,7 +135,7 @@ static twi0_operations_t rdBlkRegCompleteHandler(void *p)
 {
     I2C0_SetBuffer(((buf_t *)p)->data,((buf_t*)p)->len);
     I2C0_SetDataCompleteCallback(NULL,NULL);
-    return I2C_RESTART_READ;
+    return I2C0_RESTART_READ;
 }
 
 void i2c_readDataBlock(twi0_address_t address, uint8_t reg, void *data, size_t len)
@@ -150,7 +150,7 @@ void i2c_readDataBlock(twi0_address_t address, uint8_t reg, void *data, size_t l
     I2C0_SetBuffer(&reg,1);
     I2C0_SetAddressNackCallback(I2C0_SetRestartWriteCallback,NULL); //NACK polling?
     I2C0_MasterWrite();
-    while(I2C_BUSY == I2C0_Close()); // sit here until finished.
+    while(I2C0_BUSY == I2C0_Close()); // sit here until finished.
 }
 
 void i2c_readNBytes(twi0_address_t address, void *data, size_t len)
@@ -158,5 +158,5 @@ void i2c_readNBytes(twi0_address_t address, void *data, size_t len)
     while(!I2C0_Open(address)); // sit here until we get the bus..
     I2C0_SetBuffer(data,len);
     I2C0_MasterRead();
-    while(I2C_BUSY == I2C0_Close()); // sit here until finished.
+    while(I2C0_BUSY == I2C0_Close()); // sit here until finished.
 }

@@ -1,3 +1,12 @@
+/**
+  @Company
+    Microchip Technology Inc.
+
+  @Description
+    This Source file provides APIs.
+    Generation Information :
+    Driver Version    :   1.0.0
+*/
 /*
     (c) 2018 Microchip Technology Inc. and its subsidiaries. 
     
@@ -21,6 +30,7 @@
     SOFTWARE.
 */
 
+
 #include "../include/twi0_master.h"
 #include <stdbool.h>
 #include <stdlib.h>
@@ -28,68 +38,65 @@
 /***************************************************************************/
 // I2C STATES
 typedef enum {
-    I2C_IDLE = 0,
-    I2C_SEND_ADR_READ,
-    I2C_SEND_ADR_WRITE,
-    I2C_TX,
-    I2C_RX,
-    I2C_TX_EMPTY,
-    I2C_SEND_RESTART_READ,
-    I2C_SEND_RESTART_WRITE,
-    I2C_SEND_RESTART,
-    I2C_SEND_STOP,
-    I2C_RX_DO_ACK,
-    I2C_TX_DO_ACK,
-    I2C_RX_DO_NACK_STOP,
-    I2C_RX_DO_NACK_RESTART,
-    I2C_RESET,
-    I2C_ADDRESS_NACK,
-    I2C_BUS_COLLISION,
-    I2C_BUS_ERROR
+    I2C0_IDLE = 0,
+    I2C0_SEND_ADR_READ,
+    I2C0_SEND_ADR_WRITE,
+    I2C0_TX,
+    I2C0_RX,
+    I2C0_TX_EMPTY,
+    I2C0_SEND_RESTART_READ,
+    I2C0_SEND_RESTART_WRITE,
+    I2C0_SEND_RESTART,
+    I2C0_SEND_STOP,
+    I2C0_RX_DO_ACK,
+    I2C0_TX_DO_ACK,
+    I2C0_RX_DO_RX_NACK_STOP,
+    I2C0_RX_DO_NACK_RESTART,
+    I2C0_RESET,
+    I2C0_ADDRESS_NACK,
+    I2C0_BUS_COLLISION,
+    I2C0_BUS_ERROR
 } twi0_fsm_states_t;
 
 // I2C Event Callback List
 typedef enum {
-    I2C_DATA_COMPLETE = 0,
-    I2C_WRITE_COLLISION,
-    I2C_ADDRESSNACK,
-    I2C_DATA_NACK,
-    I2C_TIMEOUT,
-    I2C_NULL
+    I2C0_DATA_COMPLETE = 0,
+    I2C0_WRITE_COLLISION,
+    I2C0_ADDRESSNACK,
+    I2C0_DATA_NACK,
+    I2C0_TIMEOUT,
+    I2C0_NULL
 } I2C0_callbackIndex_t;
 
 // I2C Status Structure
 typedef struct {
-    twi0_callback_t callbackTable[6];
-    void *       callbackPayload[6];
-    uint16_t         timeout;
-    uint16_t         timeout_value;
+    twi0_callback_t    callbackTable[6];
+    void*    callbackPayload[6];
+    uint16_t    timeout;
+    uint16_t    timeout_value;
     twi0_address_t    address;
-    uint8_t *        data_ptr;
-    size_t           data_length;
-    twi0_fsm_states_t state;
-    twi0_error_t      error;
-    unsigned         addressNACKCheck : 1;
-    unsigned         busy : 1;
-    unsigned         inUse : 1;
-    unsigned         bufferFree : 1;
+    uint8_t*    data_ptr;
+    size_t    data_length;
+    twi0_fsm_states_t    state;
+    twi0_error_t    error;
+    unsigned   addressNACKCheck : 1;
+    unsigned    busy : 1;
+    unsigned    inUse : 1;
+    unsigned    bufferFree : 1;
     /*if timeoutDriverEnabled
     timerStruct_t timeout;
     */
 } I2C0_status_t;
-I2C0_status_t I2C0_status = {0};
-typedef twi0_fsm_states_t(stateHandlerFunction)(void);
 
-/* I2C Interfaces */
-void I2C0_Poller(void);
+I2C0_status_t I2C0_status = {0};
 
 /* I2C Internal API's */
 /* Master */
-void I2C0_MasterOpen(void);
+bool I2C0_MasterOpen(void);
 void I2C0_MasterClose(void);
-char I2C0_MasterGetRxData(void);
-void I2C0_MasterTxData(char d);
-void I2C0_MasterTxAddr(char d);
+uint8_t I2C0_MasterGetRxData(void);
+void I2C0_MasterTxData(uint8_t d);
+void I2C0_MasterTxAddr(uint8_t d);
 void I2C0_MasterResetBus(void);
 void I2C0_MasterIsRxOrTx(void);
 void I2C0_MasterStop(void);
@@ -105,9 +112,9 @@ void I2C0_MasterDisableIrq(void);
 void I2C0_MasterClearIrq(void);
 void I2C0_MasterWaitForEvent(void);
 static void I2C0_set_callback(I2C0_callbackIndex_t idx, twi0_callback_t cb, void *funPtr);
+static void I2C0_MasterIsr(void);
 static twi0_operations_t I2C0_RETURN_STOP(void *funPtr);
 static twi0_operations_t I2C0_RETURN_RESET(void *funPtr);
-static void I2C0_MasterIsr(void);
 
 /* Helper Functions */
 static twi0_fsm_states_t I2C0_DO_IDLE(void);
@@ -131,49 +138,49 @@ static twi0_fsm_states_t I2C0_DO_BUS_ERROR(void);
 
 typedef twi0_fsm_states_t(stateHandlerFunction)(void);
 stateHandlerFunction *I2C0_fsmStateTable[] = {
-    I2C0_DO_IDLE,               // I2C_IDLE
-    I2C0_DO_SEND_ADR_READ,      // I2C_SEND_ADR_READ
-    I2C0_DO_SEND_ADR_WRITE,     // I2C_SEND_ADR_WRITE
-    I2C0_DO_TX,                 // I2C_TX
-    I2C0_DO_RX,                 // I2C_RX
-    I2C0_DO_TX_EMPTY,           // I2C_TX_EMPTY
-    I2C0_DO_SEND_RESTART_READ,  // I2C_SEND_RESTART_READ
-    I2C0_DO_SEND_RESTART_WRITE, // I2C_SEND_RESTART_WRITE
-    I2C0_DO_SEND_RESTART,       // I2C_SEND_RESTART
-    I2C0_DO_SEND_STOP,          // I2C_SEND_STOP
-    I2C0_DO_RX_ACK,          // I2C_RX_DO_ACK
-    I2C0_DO_TX_ACK,          // I2C_TX_DO_ACK
-    I2C0_DO_RX_NACK_STOP,       // I2C_RX_DO_NACK_STOP
-    I2C0_DO_RX_NACK_RESTART,    // I2C_RX_DO_NACK_RESTART
-    I2C0_DO_RESET,              // I2C_RESET
-    I2C0_DO_ADDRESS_NACK,    // I2C_ADDRESS_NACK
-    I2C0_DO_BUS_COLLISION,      // I2C_BUS_COLLISION
-    I2C0_DO_BUS_ERROR           // I2C_BUS_ERROR
+    I2C0_DO_IDLE,
+    I2C0_DO_SEND_ADR_READ,
+    I2C0_DO_SEND_ADR_WRITE,
+    I2C0_DO_TX,
+    I2C0_DO_RX,
+    I2C0_DO_TX_EMPTY,
+    I2C0_DO_SEND_RESTART_READ,
+    I2C0_DO_SEND_RESTART_WRITE,
+    I2C0_DO_SEND_RESTART,
+    I2C0_DO_SEND_STOP,
+    I2C0_DO_RX_ACK,
+    I2C0_DO_TX_ACK,
+    I2C0_DO_RX_NACK_STOP,
+    I2C0_DO_RX_NACK_RESTART,
+    I2C0_DO_RESET,
+    I2C0_DO_ADDRESS_NACK,
+    I2C0_DO_BUS_COLLISION,
+    I2C0_DO_BUS_ERROR
 };
 
 void I2C0_SetDataCompleteCallback(twi0_callback_t cb, void *funPtr)
 {
-    I2C0_set_callback(I2C_DATA_COMPLETE, cb, funPtr);
+    I2C0_set_callback(I2C0_DATA_COMPLETE, cb, funPtr);
 }
 
 void I2C0_SetWriteCollisionCallback(twi0_callback_t cb, void *funPtr)
 {
-    I2C0_set_callback(I2C_WRITE_COLLISION, cb, funPtr);
+    I2C0_set_callback(I2C0_WRITE_COLLISION, cb, funPtr);
 }
 
 void I2C0_SetAddressNackCallback(twi0_callback_t cb, void *funPtr)
 {
-    I2C0_set_callback(I2C_ADDRESSNACK, cb, funPtr);
+    I2C0_set_callback(I2C0_ADDRESSNACK, cb, funPtr);
 }
 
 void I2C0_SetDataNackCallback(twi0_callback_t cb, void *funPtr)
 {
-    I2C0_set_callback(I2C_DATA_NACK, cb, funPtr);
+    I2C0_set_callback(I2C0_DATA_NACK, cb, funPtr);
 }
 
 void I2C0_SetTimeoutCallback(twi0_callback_t cb, void *funPtr)
 {
-    I2C0_set_callback(I2C_TIMEOUT, cb, funPtr);
+    I2C0_set_callback(I2C0_TIMEOUT, cb, funPtr);
 }
 
 uint8_t I2C0_Initialize()
@@ -187,8 +194,8 @@ uint8_t I2C0_Initialize()
     //Master Baud Rate Control
     TWI0.MBAUD = (uint8_t)TWI0_BAUD(100000, 0);
     
-    //RIEN disabled; WIEN disabled; QCEN disabled; TIMEOUT DISABLED; SMEN disabled; ENABLE enabled; 
-    TWI0.MCTRLA = 0x01;
+    //RIEN enabled; WIEN enabled; QCEN disabled; TIMEOUT DISABLED; SMEN disabled; ENABLE enabled; 
+    TWI0.MCTRLA = 0xC1;
     
     //RIF disabled; WIF disabled; CLKHOLD disabled; ARBLOST disabled; BUSERR disabled; BUSSTATE UNKNOWN; 
     TWI0.MSTATUS = 0x00;
@@ -205,38 +212,39 @@ uint8_t I2C0_Initialize()
     return 0;
 }
 
-// when you call open, you supply a device address.
-// if you get the bus, the function returns true
 twi0_error_t I2C0_Open(twi0_address_t address)
 {
-    twi0_error_t ret = I2C_BUSY;
+    twi0_error_t ret = I2C0_BUSY;
 
     if (!I2C0_status.inUse) {
         I2C0_status.address          = address;
         I2C0_status.busy             = 0;
         I2C0_status.inUse            = 1;
         I2C0_status.addressNACKCheck = 0;
-        I2C0_status.state            = I2C_RESET;
+        I2C0_status.state            = I2C0_RESET;
         I2C0_status.timeout_value    = 500; // MCC should determine a reasonable starting value here.
         I2C0_status.bufferFree       = 1;
         
         // set all the call backs to a default of sending stop
-        I2C0_status.callbackTable[I2C_DATA_COMPLETE]     = I2C0_RETURN_STOP;
-        I2C0_status.callbackPayload[I2C_DATA_COMPLETE]   = NULL;
-        I2C0_status.callbackTable[I2C_WRITE_COLLISION]   = I2C0_RETURN_STOP;
-        I2C0_status.callbackPayload[I2C_WRITE_COLLISION] = NULL;
-        I2C0_status.callbackTable[I2C_ADDRESSNACK]      = I2C0_RETURN_STOP;
-        I2C0_status.callbackPayload[I2C_ADDRESSNACK]    = NULL;
-        I2C0_status.callbackTable[I2C_DATA_NACK]         = I2C0_RETURN_STOP;
-        I2C0_status.callbackPayload[I2C_DATA_NACK]       = NULL;
-        I2C0_status.callbackTable[I2C_TIMEOUT]          = I2C0_RETURN_RESET;
-        I2C0_status.callbackPayload[I2C_TIMEOUT]        = NULL;
+        I2C0_status.callbackTable[I2C0_DATA_COMPLETE]     = I2C0_RETURN_STOP;
+        I2C0_status.callbackPayload[I2C0_DATA_COMPLETE]   = NULL;
+        I2C0_status.callbackTable[I2C0_WRITE_COLLISION]   = I2C0_RETURN_STOP;
+        I2C0_status.callbackPayload[I2C0_WRITE_COLLISION] = NULL;
+        I2C0_status.callbackTable[I2C0_ADDRESSNACK]      = I2C0_RETURN_STOP;
+        I2C0_status.callbackPayload[I2C0_ADDRESSNACK]    = NULL;
+        I2C0_status.callbackTable[I2C0_DATA_NACK]         = I2C0_RETURN_STOP;
+        I2C0_status.callbackPayload[I2C0_DATA_NACK]       = NULL;
+        I2C0_status.callbackTable[I2C0_TIMEOUT]          = I2C0_RETURN_RESET;
+        I2C0_status.callbackPayload[I2C0_TIMEOUT]        = NULL;
 
         I2C0_MasterResetBus();
         // Reset module
         I2C0_MasterClearIrq();
 
-        ret = I2C_NOERR;
+        // uncomment the IRQ enable for an interrupt driven driver.
+        I2C0_MasterEnableIrq();
+
+        ret = I2C0_NOERR;
     }
     return ret;
 }
@@ -249,11 +257,11 @@ void I2C0_SetAddress(twi0_address_t address)
 // close the bus if it is not busy
 twi0_error_t I2C0_Close(void)
 {
-    twi0_error_t ret = I2C_BUSY;
+    twi0_error_t ret = I2C0_BUSY;
     // Bus is in error state, reset I2C hardware and report error
     if (I2C0_MasterBusErrorOverride()) {
         I2C0_status.busy  = false;
-        I2C0_status.error = I2C_FAIL;
+        I2C0_status.error = I2C0_FAIL;
     }
     if (!I2C0_status.busy) {
         I2C0_status.inUse = 0;
@@ -283,30 +291,25 @@ void I2C0_SetBuffer(void *buffer, size_t bufferSize)
 }
 twi0_error_t I2C0_MasterOperation(bool read)
 {
-    twi0_error_t ret = I2C_BUSY;
+    twi0_error_t ret = I2C0_BUSY;
     if (!I2C0_status.busy) {
         I2C0_status.busy = true;
-        ret                       = I2C_NOERR;
+        ret    = I2C0_NOERR;
 
         if (read) {
-            I2C0_status.state = I2C_SEND_ADR_READ;
+            I2C0_status.state = I2C0_SEND_ADR_READ;
         } else {
-            I2C0_status.state = I2C_SEND_ADR_WRITE;
+            I2C0_status.state = I2C0_SEND_ADR_WRITE;
         }
         I2C0_MasterIsr();
-
-        I2C0_Poller();
     }
     return ret;
 }
 
 twi0_error_t I2C0_MasterRead(void)
-
 {
     return I2C0_MasterOperation(true);
 }
-
-
 
 twi0_error_t I2C0_MasterWrite(void)
 {
@@ -317,28 +320,19 @@ twi0_error_t I2C0_MasterWrite(void)
 /* Helper Functions                                                     */
 /************************************************************************/
 
-void I2C0_Poller(void)
-{
-    while (I2C0_status.busy)
-    {
-        I2C0_MasterWaitForEvent();
-        I2C0_MasterIsr();
-    }
-}
-
 static twi0_fsm_states_t I2C0_DO_RESET(void)
 {
     I2C0_MasterResetBus();
     I2C0_status.busy  = false; // Bus Free
-    I2C0_status.error = I2C_NOERR;
-    return I2C_RESET; // park the FSM on reset
+    I2C0_status.error = I2C0_NOERR;
+    return I2C0_RESET; // park the FSM on reset
 }
 
 static twi0_fsm_states_t I2C0_DO_IDLE(void)
 {
     I2C0_status.busy  = false; // Bus Free
-    I2C0_status.error = I2C_NOERR;
-    return I2C_IDLE; // park the FSM on IDLE
+    I2C0_status.error = I2C0_NOERR;
+    return I2C0_IDLE; // park the FSM on IDLE
 }
 
 static twi0_fsm_states_t I2C0_DO_SEND_RESTART_READ(void)
@@ -367,11 +361,11 @@ static twi0_fsm_states_t I2C0_DO_SEND_STOP(void)
 static twi0_fsm_states_t I2C0_DO_ADDRESS_NACK(void)
 {
     I2C0_status.addressNACKCheck = 0;
-    I2C0_status.error            = I2C_FAIL;
-    switch (I2C0_status.callbackTable[I2C_ADDRESSNACK](I2C0_status.callbackPayload[I2C_ADDRESSNACK])) {
-    case I2C_RESTART_READ:
+    I2C0_status.error            = I2C0_FAIL;
+    switch (I2C0_status.callbackTable[I2C0_ADDRESSNACK](I2C0_status.callbackPayload[I2C0_ADDRESSNACK])) {
+    case I2C0_RESTART_READ:
         return I2C0_DO_SEND_RESTART_READ();
-    case I2C_RESTART_WRITE:
+    case I2C0_RESTART_WRITE:
         return I2C0_DO_SEND_RESTART_WRITE();
     default:
         return I2C0_DO_SEND_STOP();
@@ -383,7 +377,7 @@ static twi0_fsm_states_t I2C0_DO_SEND_ADR_READ(void)
 
     I2C0_status.addressNACKCheck = 1;
     I2C0_MasterTxAddr(I2C0_status.address << 1 | 1);
-    return I2C_RX;
+    return I2C0_RX;
 }
 
 static twi0_fsm_states_t I2C0_DO_SEND_ADR_WRITE(void)
@@ -391,19 +385,19 @@ static twi0_fsm_states_t I2C0_DO_SEND_ADR_WRITE(void)
 
     I2C0_status.addressNACKCheck = 1;
     I2C0_MasterTxAddr(I2C0_status.address << 1);
-    return I2C_TX;
+    return I2C0_TX;
 }
 
 static twi0_fsm_states_t I2C0_DO_RX_ACK(void)
 {
     I2C0_MasterSendAck();
-    return I2C_RX;
+    return I2C0_RX;
 }
 
 static twi0_fsm_states_t I2C0_DO_TX_ACK(void)
 {
     I2C0_MasterSendAck();
-    return I2C_TX;
+    return I2C0_TX;
 }
 
 static twi0_fsm_states_t I2C0_DO_RX_NACK_STOP(void)
@@ -416,27 +410,27 @@ static twi0_fsm_states_t I2C0_DO_RX_NACK_STOP(void)
 static twi0_fsm_states_t I2C0_DO_RX_NACK_RESTART(void)
 {
     I2C0_MasterSendNack();
-    return I2C_SEND_RESTART;
+    return I2C0_SEND_RESTART;
 }
 
 static twi0_fsm_states_t I2C0_DO_TX(void)
 {
     if (I2C0_MasterIsNack()) // Slave replied with NACK
     {
-        switch (I2C0_status.callbackTable[I2C_DATA_NACK](I2C0_status.callbackPayload[I2C_DATA_NACK])) {
-        case I2C_RESTART_READ:
+        switch (I2C0_status.callbackTable[I2C0_DATA_NACK](I2C0_status.callbackPayload[I2C0_DATA_NACK])) {
+        case I2C0_RESTART_READ:
             return I2C0_DO_SEND_RESTART_READ();
-        case I2C_RESTART_WRITE:
+        case I2C0_RESTART_WRITE:
             return I2C0_DO_SEND_RESTART_WRITE();
         default:
-        case I2C_CONTINUE:
-        case I2C_STOP:
+        case I2C0_CONTINUE:
+        case I2C0_STOP:
             return I2C0_DO_SEND_STOP();
         }
     } else {
         I2C0_status.addressNACKCheck = 0;
         I2C0_MasterTxData(*I2C0_status.data_ptr++);
-        return (--I2C0_status.data_length) ? I2C_TX : I2C_TX_EMPTY;
+        return (--I2C0_status.data_length) ? I2C0_TX : I2C0_TX_EMPTY;
     }
 }
 
@@ -453,18 +447,18 @@ static twi0_fsm_states_t I2C0_DO_RX(void)
         *I2C0_status.data_ptr = I2C0_MasterGetRxData();
         I2C0_status.data_ptr++;
         I2C0_MasterIsRxOrTx();
-        return I2C_RX;
+        return I2C0_RX;
     } else {
         *I2C0_status.data_ptr = I2C0_MasterGetRxData();
         I2C0_status.data_ptr++;
         I2C0_status.bufferFree = true;
-        switch (I2C0_status.callbackTable[I2C_DATA_COMPLETE](I2C0_status.callbackPayload[I2C_DATA_COMPLETE])) {
-        case I2C_RESTART_WRITE:
-        case I2C_RESTART_READ:
+        switch (I2C0_status.callbackTable[I2C0_DATA_COMPLETE](I2C0_status.callbackPayload[I2C0_DATA_COMPLETE])) {
+        case I2C0_RESTART_WRITE:
+        case I2C0_RESTART_READ:
             return I2C0_DO_RX_NACK_RESTART();
         default:
-        case I2C_CONTINUE:
-        case I2C_STOP:
+        case I2C0_CONTINUE:
+        case I2C0_STOP:
             return I2C0_DO_RX_NACK_STOP();
         }
     }
@@ -474,27 +468,27 @@ static twi0_fsm_states_t I2C0_DO_TX_EMPTY(void)
 {
     if (I2C0_MasterIsNack()) // Slave replied with NACK
     {
-        switch (I2C0_status.callbackTable[I2C_DATA_NACK](I2C0_status.callbackPayload[I2C_DATA_NACK])) {
-        case I2C_RESTART_READ:
+        switch (I2C0_status.callbackTable[I2C0_DATA_NACK](I2C0_status.callbackPayload[I2C0_DATA_NACK])) {
+        case I2C0_RESTART_READ:
             return I2C0_DO_SEND_RESTART_READ();
-        case I2C_RESTART_WRITE:
+        case I2C0_RESTART_WRITE:
             return I2C0_DO_SEND_RESTART_WRITE();
         default:
-        case I2C_CONTINUE:
-        case I2C_STOP:
+        case I2C0_CONTINUE:
+        case I2C0_STOP:
             return I2C0_DO_SEND_STOP();
         }
     } else {
         I2C0_status.bufferFree = true;
-        switch (I2C0_status.callbackTable[I2C_DATA_COMPLETE](I2C0_status.callbackPayload[I2C_DATA_COMPLETE])) {
-        case I2C_RESTART_READ:
+        switch (I2C0_status.callbackTable[I2C0_DATA_COMPLETE](I2C0_status.callbackPayload[I2C0_DATA_COMPLETE])) {
+        case I2C0_RESTART_READ:
             return I2C0_DO_SEND_RESTART_READ();
-        case I2C_RESTART_WRITE:
+        case I2C0_RESTART_WRITE:
             return I2C0_DO_SEND_RESTART_WRITE();
-        case I2C_CONTINUE:
+        case I2C0_CONTINUE:
             return I2C0_DO_TX();
         default:
-        case I2C_STOP:
+        case I2C0_STOP:
             return I2C0_DO_SEND_STOP();
         }
     }
@@ -503,13 +497,13 @@ static twi0_fsm_states_t I2C0_DO_TX_EMPTY(void)
 static twi0_fsm_states_t I2C0_DO_BUS_COLLISION(void)
 {
     // Clear bus collision status flag
-    I2C0_MasterClearBusCollision();
+    I2C0_MasterClearIrq();
 
-    I2C0_status.error = I2C_FAIL;
-    switch (I2C0_status.callbackTable[I2C_WRITE_COLLISION](I2C0_status.callbackPayload[I2C_WRITE_COLLISION])) {
-    case I2C_RESTART_READ:
+    I2C0_status.error = I2C0_FAIL;
+    switch (I2C0_status.callbackTable[I2C0_WRITE_COLLISION](I2C0_status.callbackPayload[I2C0_WRITE_COLLISION])) {
+    case I2C0_RESTART_READ:
         return I2C0_DO_SEND_RESTART_READ();
-    case I2C_RESTART_WRITE:
+    case I2C0_RESTART_WRITE:
         return I2C0_DO_SEND_RESTART_WRITE();
     default:
         return I2C0_DO_RESET();
@@ -520,11 +514,14 @@ static twi0_fsm_states_t I2C0_DO_BUS_ERROR(void)
 {
     I2C0_MasterResetBus();
     I2C0_status.busy  = false;
-    I2C0_status.error = I2C_FAIL;
-    return I2C_RESET; // park the FSM on reset
+    I2C0_status.error = I2C0_FAIL;
+    return I2C0_RESET; 
 }
 
-
+ISR(TWI0_TWIM_vect)
+{
+    I2C0_MasterIsr();
+}
 
 void I2C0_MasterIsr(void)
 {
@@ -534,17 +531,17 @@ void I2C0_MasterIsr(void)
 
     // Address phase received NACK from slave, override next state
     if (I2C0_status.addressNACKCheck && I2C0_MasterIsNack()) {
-        I2C0_status.state = I2C_ADDRESS_NACK; // State Override
+        I2C0_status.state = I2C0_ADDRESS_NACK; // State Override
     }
 
     // Bus arbitration lost to another master, override next state
     if (I2C0_MasterArbitrationlostOverride()) {
-        I2C0_status.state = I2C_BUS_COLLISION; // State Override
+        I2C0_status.state = I2C0_BUS_COLLISION; // State Override
     }
 
     // Bus error, override next state
     if (I2C0_MasterBusErrorOverride()) {
-        I2C0_status.state = I2C_BUS_ERROR; // State Override
+        I2C0_status.state = I2C0_BUS_ERROR; // State Override
     }
 
     I2C0_status.state = I2C0_fsmStateTable[I2C0_status.state]();
@@ -555,12 +552,12 @@ void I2C0_MasterIsr(void)
 /************************************************************************/
 static twi0_operations_t I2C0_RETURN_STOP(void *p)
 {
-    return I2C_STOP;
+    return I2C0_STOP;
 }
 
 static twi0_operations_t I2C0_RETURN_RESET(void *p)
 {
-    return I2C_RESET_LINK;
+    return I2C0_RESET_LINK;
 }
 
 static void I2C0_set_callback(I2C0_callbackIndex_t idx, twi0_callback_t cb, void *funPtr)
@@ -576,9 +573,10 @@ static void I2C0_set_callback(I2C0_callbackIndex_t idx, twi0_callback_t cb, void
 
 /* Master Definitions */
 
-void I2C0_MasterOpen(void)
+bool I2C0_MasterOpen(void)
 {
     TWI0.MCTRLA = 1 << TWI_ENABLE_bp;
+    return 0;
 }
 
 void I2C0_MasterClose(void)
@@ -650,17 +648,17 @@ bool I2C0_MasterIsNack(void)
     return TWI0.MSTATUS & TWI_RXACK_bm;
 }
 
-char I2C0_MasterGetRxData(void)
+uint8_t I2C0_MasterGetRxData(void)
 {
     return TWI0.MDATA;
 }
 
-void I2C0_MasterTxData(char d)
+void I2C0_MasterTxData(uint8_t d)
 {
     TWI0.MDATA = d;
 }
 
-void I2C0_MasterTxAddr(char d)
+void I2C0_MasterTxAddr(uint8_t d)
 {
     TWI0.MADDR = d;
 }
@@ -675,22 +673,23 @@ void I2C0_MasterSendNack(void)
     TWI0.MCTRLB |= TWI_ACKACT_NACK_gc;
 }
 
+
 twi0_operations_t I2C0_SetReturnStopCallback(void *funPtr)
 {
-    return I2C_STOP;
+    return I2C0_STOP;
 }
 
 twi0_operations_t I2C0_SetReturnResetCallback(void *funPtr)
 {
-    return I2C_RESET_LINK;
+    return I2C0_RESET_LINK;
 }
 
 twi0_operations_t I2C0_SetRestartWriteCallback(void *funPtr)
 {
-    return I2C_RESTART_WRITE;
+    return I2C0_RESTART_WRITE;
 }
 
 twi0_operations_t I2C0_SetRestartReadCallback(void *funPtr)
 {
-    return I2C_RESTART_READ;
+    return I2C0_RESTART_READ;
 }

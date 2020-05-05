@@ -1,3 +1,12 @@
+/**
+  @Company
+    Microchip Technology Inc.
+
+  @Description
+    This Source file provides APIs.
+    Generation Information :
+    Driver Version    :   1.0.0
+*/
 /*
     (c) 2018 Microchip Technology Inc. and its subsidiaries. 
     
@@ -21,8 +30,9 @@
     SOFTWARE.
 */
 
-#ifndef SPI_BASIC_H_INCLUDED
-#define SPI_BASIC_H_INCLUDED
+
+#ifndef SPI0_BASIC_H_INCLUDED
+#define SPI0_BASIC_H_INCLUDED
 
 #include "../utils/compiler.h"
 #include <stdbool.h>
@@ -47,18 +57,18 @@ typedef struct {
     A bidirectional transfer (=SPI_EXCHANGE) causes the received data
     to overwrite the buffer with the data to transmit.
 */
-typedef enum spi_transfer_type {
-    SPI_EXCHANGE, ///< SPI transfer is bidirectional
-    SPI_READ,     ///< SPI transfer reads, writes only 0s
-    SPI_WRITE     ///< SPI transfer writes, discards read data
+typedef enum spi0_transfer_type {
+    SPI0_EXCHANGE, ///< SPI transfer is bidirectional
+    SPI0_READ,     ///< SPI transfer reads, writes only 0s
+    SPI0_WRITE     ///< SPI transfer writes, discards read data
 } spi0_transfer_type_t;
 
 /** Status of the SPI hardware and SPI bus.*/
-typedef enum spi_transfer_status {
-    SPI_FREE, ///< SPI hardware is not open, bus is free.
-    SPI_IDLE, ///< SPI hardware has been opened, no transfer ongoing.
-    SPI_BUSY, ///< SPI hardware has been opened, transfer ongoing.
-    SPI_DONE  ///< SPI hardware has been opened, transfer complete.
+typedef enum spi0_transfer_status {
+    SPI0_FREE, ///< SPI hardware is not open, bus is free.
+    SPI0_IDLE, ///< SPI hardware has been opened, no transfer ongoing.
+    SPI0_BUSY, ///< SPI hardware has been opened, transfer ongoing.
+    SPI0_DONE  ///< SPI hardware has been opened, transfer complete.
 } spi0_transfer_status_t;
 
 /** Enumeration of the different configurations supported by the driver.
@@ -225,4 +235,4 @@ void SPI0_WaitDataready(void);
 }
 #endif
 
-#endif /* SPI_BASIC_H_INCLUDED */
+#endif /* SPI0_BASIC_H_INCLUDED */
