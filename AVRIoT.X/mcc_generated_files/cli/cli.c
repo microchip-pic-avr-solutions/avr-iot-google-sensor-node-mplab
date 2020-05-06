@@ -37,6 +37,7 @@
 #include "../cloud/crypto_client/crypto_client.h"
 #include "../credentials_storage/credentials_storage.h"
 #include "../mqtt/mqtt_core/mqtt_core.h"
+#include "../winc/m2m/m2m_types.h"
 #include "../debug_print.h"
 #include "../cloud/wifi_service.h"
 #include "../mqtt/mqtt_comm_bsd/mqtt_comm_layer.h"
@@ -211,15 +212,15 @@ static void set_wifi_auth(char *ssid_pwd_auth)
     switch (params)
     {
         case WIFI_PARAMS_OPEN:
-                strncpy(ssid, credentials[0],MAX_WIFI_CREDENTIALS_LENGTH-1);
+                strncpy(ssid, credentials[0],M2M_MAX_SSID_LEN-1);
                 strcpy(pass, "\0");
                 strcpy(authType, "1");                
             break;
 
         case WIFI_PARAMS_PSK:
 		case WIFI_PARAMS_WEP:
-                strncpy(ssid, credentials[0],MAX_WIFI_CREDENTIALS_LENGTH-1);
-                strncpy(pass, credentials[1],MAX_WIFI_CREDENTIALS_LENGTH-1);
+                strncpy(ssid, credentials[0],M2M_MAX_SSID_LEN-1);
+                strncpy(pass, credentials[1],M2M_MAX_PSK_LEN-1);
                 sprintf(authType, "%d", params);                
             break;
             

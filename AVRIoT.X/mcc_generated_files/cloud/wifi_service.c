@@ -129,25 +129,25 @@ void wifi_init(void (*funcPtr)(uint8_t), uint8_t mode) {
 
 bool wifi_connectToAp(uint8_t passed_wifi_creds)
 {
-	int8_t e = 0;
-	
-	if(passed_wifi_creds == NEW_CREDENTIALS)
-	{
-		e=m2m_wifi_connect((char *)ssid, sizeof(ssid), atoi((char*)authType), (char *)pass, M2M_WIFI_CH_ALL);
-	}
-	else
-	{
-		e=m2m_wifi_default_connect();
-	}
-		
-	if(M2M_SUCCESS != e)
-	{
-	  debug_printError("WIFI: wifi error = %d",e);
-	  shared_networking_params.haveError = 1;
-	  return false;
-	}
-	
-	return true;
+    int8_t wifiError = 0;
+    
+    if(passed_wifi_creds == NEW_CREDENTIALS)
+    {
+       wifiError = m2m_wifi_connect(ssid, strlen(ssid), atoi(authType), pass, M2M_WIFI_CH_ALL);
+    }
+    else
+    {
+       wifiError =  m2m_wifi_default_connect();
+    }
+    
+    if(M2M_SUCCESS != wifiError)
+    {
+      debug_printError("WIFI: wifi error = %d",wifiError);
+      shared_networking_params.haveError = 1;
+      return false;
+    }
+    
+    return true;
 }
 
 uint32_t softApConnectTask(void *param)
