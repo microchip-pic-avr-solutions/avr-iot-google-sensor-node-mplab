@@ -186,6 +186,8 @@ General Out-Of-Box operation is as described below:
      + Credentials can be downloaded as the file **WIFI.CFG** using the **CLICK-ME.HTM** file stored on the **CURIOSITY** device. 
      + This will launch the URL: https://avr-iot.com/device/{DeviceId} The file produced with entered credentials is produced through the WINC module, and no information is shared through the internet. 
      + Drag and Drop, or Copy and Paste the **WIFI.CFG** file onto the **CURIOSITY** device to load new credentials onto the IoT demonstration board. 
+	 
+	   **Note:** The 'Drag and Drop' event sends the credentials in **WIFI.CFG** file to microcontroller using UART2. To prevent the possibility of receiving garbage data, pull-up has been enabled on UART2 Rx pin, which should not be disabled. Disabling the pull-up will leave the pin floating, thus resulting in garbage data reception on UART2.
      + Use a **Serial Terminal** to update the Wi-Fi Credentials loaded onto the WINC module. 
      + Use the Command Line Interface (CLI) supported command ``wifi host_name,pass_code,auth_type`` | host_name/pass_code are entered strings, auth_type is int value: (0: open, 1: WEP, 2: WPA).
 
