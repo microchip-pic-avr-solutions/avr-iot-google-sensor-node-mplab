@@ -46,13 +46,14 @@
 #include "../cloud/cloud_interface.h"
 #include "../cloud/mqtt_service.h"
 
-#define WIFI_PARAMS_OPEN    1
-#define WIFI_PARAMS_PSK     2
-#define WIFI_PARAMS_WEP     3
-#define MAX_COMMAND_SIZE        100
-#define MAX_PUB_KEY_LEN         200
+#define WIFI_PARAMS_OPEN        (1)
+#define WIFI_PARAMS_PSK         (2)
+#define WIFI_PARAMS_WEP         (3)
+#define MAX_COMMAND_SIZE        (100)
+#define MAX_PUB_KEY_LEN         (200)
+#define CLI_TASK_INTERVAL       (50)
 #define NEWLINE "\r\n"
-#define KEY_OR_THING "key"
+#define KEY_OR_THING            "key"
 #define UNKNOWN_CMD_MSG "--------------------------------------------" NEWLINE\
                         "Unknown command. List of available commands:" NEWLINE\
                         "reset"NEWLINE\
@@ -86,7 +87,6 @@ static void set_debug_level(char *pArg);
 static bool endOfLineTest(char c);
 static void enableUsartRxInterrupts(void);
 
-#define CLI_TASK_INTERVAL      50
 
 uint32_t CLI_task(void*);
 timerStruct_t CLI_task_timer             = {CLI_task};
@@ -180,8 +180,7 @@ static void set_wifi_auth(char *ssid_pwd_auth)
     char *credentials[3];
     char *pch;
     uint8_t params = 0;
-	uint8_t i;
-    ledTickState_t ledState;
+    uint8_t i;
     
     for(i=0;i<=2;i++)credentials[i]='\0';
 
@@ -212,16 +211,16 @@ static void set_wifi_auth(char *ssid_pwd_auth)
     switch (params)
     {
         case WIFI_PARAMS_OPEN:
-                strncpy(ssid, credentials[0],M2M_MAX_SSID_LEN-1);
-                strcpy(pass, "\0");
-                strcpy(authType, "1");                
+            strncpy(ssid, credentials[0],M2M_MAX_SSID_LEN-1);
+            strcpy(pass, "\0");
+            strcpy(authType, "1");                
             break;
 
         case WIFI_PARAMS_PSK:
-		case WIFI_PARAMS_WEP:
-                strncpy(ssid, credentials[0],M2M_MAX_SSID_LEN-1);
-                strncpy(pass, credentials[1],M2M_MAX_PSK_LEN-1);
-                sprintf(authType, "%d", params);                
+        case WIFI_PARAMS_WEP:
+            strncpy(ssid, credentials[0],M2M_MAX_SSID_LEN-1);
+            strncpy(pass, credentials[1],M2M_MAX_PSK_LEN-1);
+            sprintf(authType, "%d", params);                
             break;
             
         default:
@@ -240,13 +239,19 @@ static void set_wifi_auth(char *ssid_pwd_auth)
             shared_networking_params.haveDataConnection = 0;
             MQTT_Disconnect(MQTT_GetClientConnectionInfo());
         } 
-		wifi_disconnectFromAp();
-        ledState.Full2Sec = LED_OFF_STATIC;
-        LED_modeYellow(ledState);
-        LED_modeRed(ledState);
-        LED_modeGreen(ledState);
-        ledState.Full2Sec = LED_BLINK;
-        LED_modeBlue(ledState);  
+        wifi_disconnectFromAp();
+        ledParameterYellow.onTime = SOLID_OFF;
+        ledParameterYellow.offTime = SOLID_ON;
+        LED_control(&ledParameterYellow);
+        ledParameterRed.onTime = SOLID_OFF;
+        ledParameterRed.offTime = SOLID_ON;
+        LED_control(&ledParameterRed);
+        ledParameterGreen.onTime = SOLID_OFF;
+        ledParameterGreen.offTime = SOLID_ON;
+        LED_control(&ledParameterGreen);
+        ledParameterBlue.onTime = LED_BLINK;
+        ledParameterBlue.offTime = LED_BLINK;
+        LED_control(&ledParameterBlue);
 	}
 	else
 	{
@@ -256,13 +261,17 @@ static void set_wifi_auth(char *ssid_pwd_auth)
 
 static void reconnect_cmd(char *pArg)
 {
-    ledTickState_t ledState;
     (void)pArg;
-    ledState.Full2Sec = LED_OFF_STATIC;
-    LED_modeYellow(ledState);
-    LED_modeRed(ledState);
-    ledState.Full2Sec = LED_BLINK;
-    LED_modeGreen(ledState);
+    ledParameterYellow.onTime = SOLID_OFF;
+    ledParameterYellow.offTime = SOLID_ON;
+    LED_control(&ledParameterYellow);
+    ledParameterRed.onTime = SOLID_OFF;
+    ledParameterRed.offTime = SOLID_ON;
+    LED_control(&ledParameterRed);
+    ledParameterGreen.onTime = LED_BLINK;
+    ledParameterGreen.offTime = LED_BLINK;
+    LED_control(&ledParameterGreen);
+    
     shared_networking_params.haveDataConnection = 0;
     MQTT_Disconnect(MQTT_GetClientConnectionInfo());
     printf("OK\r\n");
@@ -342,7 +351,7 @@ static void command_received(char *command_text)
     uint8_t cmp;
     uint8_t ct_len;
     uint8_t cc_len;
-	uint8_t i = 0;
+    uint8_t cmdIndex = 0;
 
     if (argument != NULL)
     {
@@ -352,17 +361,17 @@ static void command_received(char *command_text)
         argument++;
     }
 
-    for (i = 0; i < sizeof(commands)/sizeof(*commands); i++)
+    for (cmdIndex = 0; cmdIndex < sizeof(commands)/sizeof(*commands); cmdIndex++)
     {
-        cmp = strcmp(command_text, commands[i].command);
+        cmp = strcmp(command_text, commands[cmdIndex].command);
         ct_len = strlen(command_text);        
-        cc_len = strlen(commands[i].command);
+        cc_len = strlen(commands[cmdIndex].command);
 
         if (cmp == 0 && ct_len == cc_len)
         {
-            if (commands[i].handler != NULL)
+            if (commands[cmdIndex].handler != NULL)
             {
-                commands[i].handler(argument);
+                commands[cmdIndex].handler(argument);
                 return;
             }
         }
