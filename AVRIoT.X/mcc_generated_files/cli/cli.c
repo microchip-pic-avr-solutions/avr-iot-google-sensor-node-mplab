@@ -347,11 +347,12 @@ static void get_firmware_version(char *pArg)
 
 static void command_received(char *command_text)
 {
-    char *argument = strstr(command_text, " ");
     uint8_t cmp;
     uint8_t ct_len;
     uint8_t cc_len;
     uint8_t cmdIndex = 0;
+
+    char *argument = strstr(command_text, " ");
 
     if (argument != NULL)
     {

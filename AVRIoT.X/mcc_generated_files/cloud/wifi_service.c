@@ -183,7 +183,7 @@ uint32_t ntpTimeFetchTask(void *payload)
     {
         strcpy(ntpServerName, CFG_NTP_SERVER);
         debug_printInfo("NTP server name: %s", ntpServerName);
-        m2m_wifi_configure_sntp(ntpServerName, sizeof(ntpServerName), SNTP_ENABLE_DHCP);
+        m2m_wifi_configure_sntp((uint8_t*)ntpServerName, sizeof(ntpServerName), SNTP_ENABLE_DHCP);
     }    
     m2m_wifi_get_system_time();
     
