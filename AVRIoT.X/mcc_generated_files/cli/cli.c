@@ -73,7 +73,7 @@ static bool commandTooLongFlag = false;
 
 const char * const cli_version_number             = "3.0";
 
-const char * const firmware_version_number        = "3.0.0";
+const char * const firmware_version_number        = "4.0.0";
 
 static void command_received(char *command_text);
 static void reset_cmd(char *pArg);
