@@ -71,7 +71,7 @@ static bool isCommandReceived = false;
 static uint8_t index = 0;
 static bool commandTooLongFlag = false;
 
-const char * const cli_version_number             = "3.0";
+const char * const cli_option_version_number      = "3.0.1";
 
 const char * const firmware_version_number        = "4.0.0";
 
@@ -336,7 +336,7 @@ static void get_device_id(char *pArg)
 static void get_cli_version(char *pArg)
 {
     (void)pArg;
-    printf("v%s\r\n\4", cli_version_number);
+    printf("v%s\r\n\4", cli_option_version_number);
 }
 
 static void get_firmware_version(char *pArg)

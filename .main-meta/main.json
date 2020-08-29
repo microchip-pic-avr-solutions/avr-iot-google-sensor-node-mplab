@@ -1,0 +1,102 @@
+{
+    "metaDataVersion": "1.0.0",
+    "category": "com.microchip.ide.project",
+    "content": {
+        "metaDataVersion": "1.1.0",
+        "name": "com.microchip.mcu8.mplabx.project.avr-iot-google-sensor-node-mplab",
+        "version": "4.0.0",
+        "displayName": "AVR IoT Google Sensor Node MPLAB",
+        "projectName": "avr-iot-google-sensor-node-mplab",
+        "shortDescription": "Microchip AVR-IoT WG (Wireless for Google Cloud) Application Example",
+        "ide": {
+            "name": "MPLABX",
+            "semverRange": ">=5.30.0"
+        },
+        "compiler": [
+            {
+                "name": "xc8",
+                "semverRange": "^2.10.0"
+            },
+            {
+                "name": "gcc",
+                "semverRange": "^5.4.0"
+            }
+        ],
+        "dfp": {
+            "name": "Atmega_DFP",
+            "semverRange": "^2.0.12"
+        },
+        "configurator": {
+            "name": "MCC",
+            "semverRange": ">=3.95.0"
+        },
+        "device": {
+            "metaDataVersion": "1.0.0",
+            "category": "com.microchip.portal.contentRef",
+            "content": {
+                "metaDataVersion": "1.0.0",
+                "category": "com.microchip.device",
+                "name": "ATMEGA4808",
+                "versionRange": "*"
+            }
+        },
+        "author": "MCU8 Library Development Team",
+        "subcategories": [
+            "MCC",
+            "IoT",
+            [
+                "Peripherals",
+                "SPI"
+            ],
+            [
+                "Peripherals",
+                "I2C"
+            ],
+            [
+                "Peripherals",
+                "TIMER"
+            ],
+            [
+                "Peripherals",
+                "UART"
+            ],
+            [
+                "Peripherals",
+                "ADC"
+            ]
+        ],
+        "peripherals": [
+            "Interrupt",
+            "PWM",
+            "CCP",
+            "TIMER"
+        ],
+        "keywords": [
+            "MCC",
+            "ECC608",
+            "WINC1510",
+            "Wireless",
+            "MQTT",
+            "Internet of things",
+            "Security",
+            "Crypto Authentication Library",
+            "Cloud",
+            "Google",
+            "Google Cloud IoT Core",
+            "Sensors",
+            "AVR-IoT",
+            "AVR-IoT WG Development Board"
+        ],
+        "additionalData": {
+            "longDescription": {
+                "metaDataVersion": "1.0.0",
+                "category": "com.microchip.portal.fileRef",
+                "content": {
+                    "metaDataVersion": "1.0.0",
+                    "fileName": "./README.md",
+                    "mimeType": "text/markdown"
+                }
+            }
+        }   
+    }
+}
