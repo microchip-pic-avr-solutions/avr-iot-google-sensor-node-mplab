@@ -1,3 +1,12 @@
+/**
+  @Company
+    Microchip Technology Inc.
+
+  @Description
+    This Source file provides APIs.
+    Generation Information :
+    Driver Version    :   1.0.0
+*/
 /*
     (c) 2018 Microchip Technology Inc. and its subsidiaries. 
     
@@ -21,6 +30,7 @@
     SOFTWARE.
 */
 
+
 #ifndef MCC_H
 #define	MCC_H
 
@@ -30,17 +40,17 @@ extern "C" {
 
 #include "utils/compiler.h"
 #include "include/pin_manager.h"
-#include "CryptoAuth_init.h"
-#include "drivers/i2c_simple_master.h"
-#include "delay.h"
-#include "include/twi0_master.h"
-#include "include/spi0.h"
-#include "include/rtc.h"
-#include "include/cpuint.h"
 #include "include/usart2.h"
-#include "include/adc0.h"
+#include "include/twi0_master.h"
 #include "drivers/spi_master.h"
+#include "drivers/i2c_simple_master.h"
+#include "include/cpuint.h"
+#include "delay.h"
 #include "drivers/timeout.h"
+#include "include/spi0.h"
+#include "CryptoAuth_init.h"
+#include "include/rtc.h"
+#include "include/adc0.h"
 #include "config/clock_config.h"
 
 /**

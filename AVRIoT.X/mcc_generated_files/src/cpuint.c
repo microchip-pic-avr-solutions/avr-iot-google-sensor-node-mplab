@@ -1,3 +1,12 @@
+/**
+  @Company
+    Microchip Technology Inc.
+
+  @Description
+    This Source file provides APIs.
+    Generation Information :
+    Driver Version    :   1.0.0
+*/
 /*
     (c) 2018 Microchip Technology Inc. and its subsidiaries. 
     
@@ -21,6 +30,7 @@
     SOFTWARE.
 */
 
+
 #include "../include/cpuint.h"
 
 /**
@@ -36,7 +46,7 @@ int8_t CPUINT_Initialize()
     //LVL0PRI 0; 
     CPUINT.LVL0PRI = 0x00;
     
-    //USART2 RX Interrupt vector number provided to give it the highest priority
+    //LVL1VEC 31; 
     CPUINT.LVL1VEC = 0x1F;
 
     ENABLE_INTERRUPTS(); 

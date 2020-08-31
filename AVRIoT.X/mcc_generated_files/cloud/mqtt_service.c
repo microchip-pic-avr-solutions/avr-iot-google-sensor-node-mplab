@@ -32,7 +32,6 @@
 #include "../mqtt/mqtt_packetTransfer_interface.h"
 #include "../config/IoT_Sensor_Node_config.h"
 #include "../debug_print.h"
-
 char cid[MQTT_CID_LENGTH];
 static publishReceptionHandler_t *publishRecvInfo;
 
@@ -53,13 +52,13 @@ static void manageSubscriptionMessage(uint8_t *topic, uint8_t *payload)
         {
             if(strchr((const char*)publishRecvHandlerInfo->topic, multiLevelWildcard))
             {
-                if(!strncmp(topic, publishRecvHandlerInfo->topic, (strlen(publishRecvHandlerInfo->topic) - 1)))
+                if(!strncmp((const char*)topic, (const char*)publishRecvHandlerInfo->topic, (strlen((const char*)publishRecvHandlerInfo->topic) - 1)))
                 {
                     publishRecvHandlerInfo->mqttHandlePublishDataCallBack(topic, payload);
                     break;
                 }
             }
-            else if(memcmp((void*) publishRecvHandlerInfo->topic, (void*) topic, strlen(publishRecvHandlerInfo->topic)) == 0) 
+            else if(memcmp((void*) publishRecvHandlerInfo->topic, (void*) topic, strlen((const char*)publishRecvHandlerInfo->topic)) == 0) 
             {
                 publishRecvHandlerInfo->mqttHandlePublishDataCallBack(topic, payload);
                 break;
@@ -109,7 +108,7 @@ bool MQTT_CLIENT_subscribe(void)
     mqttSubscribePacket cloudSubscribePacket;
 	uint8_t topicCount = 0;
 
-    publishReceptionHandler_t (*subscriptionTable)[] = MQTT_GetPublishReceptionHandlerTable();
+    publishReceptionHandler_t *subscriptionTablePointer = MQTT_GetPublishReceptionHandlerTable();
     
 	// Variable header
 	cloudSubscribePacket.packetIdentifierLSB = 1;
@@ -118,9 +117,10 @@ bool MQTT_CLIENT_subscribe(void)
 	// Payload
 	for(topicCount = 0; topicCount < NUM_TOPICS_SUBSCRIBE; topicCount++)
 	{
-		cloudSubscribePacket.subscribePayload[topicCount].topic = (*subscriptionTable)[topicCount].topic;
-		cloudSubscribePacket.subscribePayload[topicCount].topicLength = strlen((*subscriptionTable)[topicCount].topic);
+		cloudSubscribePacket.subscribePayload[topicCount].topic = subscriptionTablePointer->topic;
+		cloudSubscribePacket.subscribePayload[topicCount].topicLength = strlen((const char*)(subscriptionTablePointer->topic));
 		cloudSubscribePacket.subscribePayload[topicCount].requestedQoS = 0;
+        subscriptionTablePointer++;
 	}
 	
 	if(MQTT_CreateSubscribePacket(&cloudSubscribePacket) == true)

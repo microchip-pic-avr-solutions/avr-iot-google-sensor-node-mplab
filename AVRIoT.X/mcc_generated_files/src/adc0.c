@@ -1,3 +1,12 @@
+/**
+  @Company
+    Microchip Technology Inc.
+
+  @Description
+    This Source file provides APIs.
+    Generation Information :
+    Driver Version    :   1.0.0
+*/
 /*
     (c) 2018 Microchip Technology Inc. and its subsidiaries. 
     
@@ -20,6 +29,7 @@
     OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
     SOFTWARE.
 */
+
 
 #include "../include/adc0.h"
 
@@ -150,7 +160,7 @@ adc_result_t ADC0_GetConversion(adc_0_channel_t channel)
 
 uint8_t ADC0_GetResolution()
 {
-	return (ADC0.CTRLA & ADC_RESSEL_bm) ? 8 : 10;
+	return (ADC0.CTRLA & ADC_RESSEL_bm) ? 10 : 12;
 }
 
 void ADC0_RegisterWindowCallback(adc_irq_cb_t f)

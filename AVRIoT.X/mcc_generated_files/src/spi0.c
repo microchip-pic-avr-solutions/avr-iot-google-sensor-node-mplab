@@ -1,3 +1,12 @@
+/**
+  @Company
+    Microchip Technology Inc.
+
+  @Description
+    This Source file provides APIs.
+    Generation Information :
+    Driver Version    :   1.0.0
+*/
 /*
     (c) 2018 Microchip Technology Inc. and its subsidiaries. 
     
@@ -21,6 +30,7 @@
     SOFTWARE.
 */
 
+
 #include "../include/spi0.h"
 #include "../include/pin_manager.h"
 
@@ -37,8 +47,8 @@ static spi0_descriptor_t spi0_desc;
 
 uint8_t SPI0_Initialize()
 {
-    //DORD disabled; MASTER enabled; CLK2X enabled; PRESC DIV64; ENABLE enabled; 
-    SPI0.CTRLA = 0x35;
+    //DORD disabled; MASTER enabled; CLK2X disabled; PRESC DIV16; ENABLE enabled; 
+    SPI0.CTRLA = 0x23;
 
     //BUFEN disabled; BUFWR disabled; SSD disabled; MODE 0; 
     SPI0.CTRLB = 0x00;
@@ -46,7 +56,7 @@ uint8_t SPI0_Initialize()
     //RXCIE disabled; TXCIE disabled; DREIE disabled; SSIE disabled; IE disabled; 
     SPI0.INTCTRL = 0x00;
 
-    spi0_desc.status = SPI_FREE;
+    spi0_desc.status = SPI0_FREE;
 
     //RXCIF disabled; IF disabled; TXCIF disabled; WRCOL disabled; DREIF disabled; SSIF disabled; BUFOVF disabled; 
     SPI0.INTFLAGS = 0x00;
@@ -70,8 +80,8 @@ bool SPI0_OpenConfiguration(uint8_t spiUniqueConfiguration){
 
 bool SPI0_Open(spi0_configuration_t spiUniqueConfiguration)
 {
-    if (spi0_desc.status == SPI_FREE) {
-        spi0_desc.status = SPI_IDLE;
+    if (spi0_desc.status == SPI0_FREE) {
+        spi0_desc.status = SPI0_IDLE;
         SPI0.CTRLA                = spiUniqueConfiguration.CTRLAvalue;
         SPI0.CTRLB                = spiUniqueConfiguration.CTRLBvalue;
         return true;
@@ -82,14 +92,13 @@ bool SPI0_Open(spi0_configuration_t spiUniqueConfiguration)
 
 void SPI0_Close(void)
 {
-    spi0_desc.status = SPI_FREE;
+    spi0_desc.status = SPI0_FREE;
 }
 
 uint8_t SPI0_ExchangeByte(uint8_t data)
 {
     SPI0.DATA = data;
-    while (!(SPI0.INTFLAGS & SPI_RXCIF_bm))
-        ;
+    while (!(SPI0.INTFLAGS & SPI_RXCIF_bm));
     return SPI0.DATA;
 }
 

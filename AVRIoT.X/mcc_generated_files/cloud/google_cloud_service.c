@@ -43,8 +43,9 @@
 #include "../debug_print.h"
 
 
-#define PASSWORD_SPACE 456
-#define CLOUD_MAX_DEVICEID_LENGTH 30
+#define PASSWORD_SPACE              (456)
+#define CLOUD_MAX_DEVICEID_LENGTH   (30)
+#define SERIAL_NUMBER_SIZE          (20)
 
 char mqttPassword[PASSWORD_SPACE];
 const char projectId[] = CFG_PROJECT_ID;
@@ -54,7 +55,6 @@ char deviceId[CLOUD_MAX_DEVICEID_LENGTH];
 publishReceptionHandler_t imqtt_publishReceiveCallBackTable[NUM_TOPICS_SUBSCRIBE];
 
 static void updateJWT(uint32_t epoch);
-
 
 void CLOUD_init(timerStruct_t* appProtocolTimeoutTaskTimer, timerStruct_t* cloudResetTaskTimer) 
 {
@@ -131,17 +131,21 @@ void CLOUD_connectAppProtocol(void)
 
 static void updateJWT(uint32_t epoch)
 {
-    char ateccsn[20];
+    char ateccsn[SERIAL_NUMBER_SIZE];
+	uint8_t cyptoResult;
+	uint32_t offsetValue;
+	uint32_t adjustTime;
+	
     CRYPTO_CLIENT_printSerialNumber(ateccsn);
     sprintf(deviceId, "d%s", ateccsn);
     
     sprintf(cid, "projects/%s/locations/%s/registries/%s/devices/%s", projectId, projectRegion, registryId, deviceId);
     
     debug_printInfo("MQTT: cid=%s", cid);
-    uint8_t cyptoResult = CRYPTO_CLIENT_createJWT((char*)mqttPassword, PASSWORD_SPACE, epoch, projectId);
+    cyptoResult = CRYPTO_CLIENT_createJWT((char*)mqttPassword, PASSWORD_SPACE, epoch, projectId);
     
-    uint32_t offsetValue = TIME_getOffset_UNIX();
-    uint32_t adjustTime = epoch - offsetValue;
+    offsetValue = TIME_getOffset_UNIX();
+    adjustTime = epoch - offsetValue;
     
     debug_printInfo("JWT: Result(%d) at %s", cyptoResult == 0 ? 1 : -1);
     debug_printInfo("JWT TimeStamp: %s", TIME_GetcTime(adjustTime));

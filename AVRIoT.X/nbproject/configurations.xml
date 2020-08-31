@@ -20,11 +20,11 @@
           <itemPath>mcc_generated_files/cloud/cloud_interface.h</itemPath>
         </logicalFolder>
         <logicalFolder name="config" displayName="config" projectFiles="true">
-          <itemPath>mcc_generated_files/config/clock_config.h</itemPath>
           <itemPath>mcc_generated_files/config/conf_winc.h</itemPath>
           <itemPath>mcc_generated_files/config/IoT_Sensor_Node_config.h</itemPath>
           <itemPath>mcc_generated_files/config/cloud_config.h</itemPath>
           <itemPath>mcc_generated_files/config/mqtt_config.h</itemPath>
+          <itemPath>mcc_generated_files/config/clock_config.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f3" displayName="credentials_storage" projectFiles="true">
           <itemPath>mcc_generated_files/credentials_storage/credentials_storage.h</itemPath>
@@ -173,9 +173,9 @@
         <itemPath>mcc_generated_files/sensors_handling.h</itemPath>
         <itemPath>mcc_generated_files/time_service.h</itemPath>
         <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/cryptoauthlib.h</itemPath>
-        <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/CryptoAuth_init.h</itemPath>
-        <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/cryptoauthlib_config.h</itemPath>
         <itemPath>mcc_generated_files/debug_print.h</itemPath>
+        <itemPath>mcc_generated_files/CryptoAuth_init.h</itemPath>
+        <itemPath>mcc_generated_files/cryptoauthlib_config.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -349,7 +349,7 @@
         <itemPath>mcc_generated_files/led.c</itemPath>
         <itemPath>mcc_generated_files/sensors_handling.c</itemPath>
         <itemPath>mcc_generated_files/time_service.c</itemPath>
-        <itemPath>mcc_generated_files/CryptoAuthenticationLibrary/CryptoAuth_init.c</itemPath>
+        <itemPath>mcc_generated_files/CryptoAuth_init.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>

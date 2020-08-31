@@ -44,8 +44,8 @@
 // MCC generated parameters
 #define CFG_MQTT_PORT 443
 #define CFG_MQTT_HOSTURL "mqtt.googleapis.com"
+#define CFG_MQTT_SERVERIPv4_HEX 0x00000000
 #define CFG_MQTT_CONN_TIMEOUT 10
-#define CFG_MQTT_BROKERIP 0x00000000
 #define CFG_MQTT_TXBUFFER_SIZE 400
 #define CFG_MQTT_RXBUFFER_SIZE 400
 #define CFG_MQTT_USERNAME "mchpUser"
@@ -54,7 +54,6 @@
 #define CFG_PUBTOPIC "mchp/iot/events"
 #define CFG_SUBTOPIC "mchp/iot/config"
 #define TCPIP_BSD 1
-
 
 /********************MQTT Client configurations*(END)***********************/
 
@@ -81,7 +80,6 @@
 #endif /* TCPIP_LITE */
 
 /*******************Timeout Driver for MQTT definitions*(END)******************/
-
 
 
 #endif	/* MQTT_CONFIG_H */
