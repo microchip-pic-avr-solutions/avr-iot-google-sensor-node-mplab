@@ -56,6 +56,9 @@ SOFTWARE.
 #define SW_DEBOUNCE_INTERVAL   1460000L
 #define SW0_TOGGLE_STATE	   SW0_GetValue()
 #define SW1_TOGGLE_STATE	   SW1_GetValue()
+#define TOGGLE_ON  1
+#define TOGGLE_OFF 0
+static uint8_t toggleState = 0;
 
 // This will contain the device ID, before we have it this dummy value is the init value which is non-0
 char attDeviceID[20] = "BAAAAADD1DBAAADD1D";
@@ -71,6 +74,8 @@ static void sendToCloud(void);
 static void updateDeviceShadow(void);
 static void subscribeToCloud(void);
 static void receivedFromCloud(uint8_t *topic, uint8_t *payload);
+static void setToggleState(uint8_t passedToggleState);
+static uint8_t getToggleState(void);
 
 // This will get called every 1 second only while we have a valid Cloud connection
 static void sendToCloud(void)
@@ -79,7 +84,7 @@ static void sendToCloud(void)
     static char publishMqttTopic[PUBLISH_TOPIC_SIZE];
     int rawTemperature = 0;
     int light = 0;
-    int len = 0;    
+    int len = 0; 
     sprintf(publishMqttTopic, "/devices/d%s/events", attDeviceID);
     // This part runs every CFG_SEND_INTERVAL seconds
     if (shared_networking_params.haveAPConnection)
@@ -115,12 +120,14 @@ static void receivedFromCloud(uint8_t *topic, uint8_t *payload)
         {
             if (subString[strlen(toggleToken)] == '1')
             {   
+                setToggleState(TOGGLE_ON);
                 ledParameterYellow.onTime = SOLID_ON;
                 ledParameterYellow.offTime = SOLID_OFF;
                 LED_control(&ledParameterYellow);
             }
             else
             {
+                setToggleState(TOGGLE_OFF);
                 ledParameterYellow.onTime = SOLID_OFF;
                 ledParameterYellow.offTime = SOLID_ON;
                 LED_control(&ledParameterYellow);
@@ -265,6 +272,16 @@ static void subscribeToCloud(void)
     CLOUD_registerSubscription((uint8_t*)mqttSubscribeTopic,receivedFromCloud);
 }
 
+static void setToggleState(uint8_t passedToggleState)
+{
+    toggleState = passedToggleState;
+}
+
+static uint8_t getToggleState(void)
+{
+    return toggleState;
+}
+
 
 // This scheduler will check all tasks and timers that are due and service them
 void runScheduler(void)
@@ -315,14 +332,14 @@ uint32_t MAIN_dataTask(void *payload)
         {
             if(CLOUD_checkIsConnected())
             {
-                ledParameterGreen.onTime = SOLID_ON;
-                ledParameterGreen.offTime = SOLID_OFF;
+               ledParameterGreen.onTime = SOLID_ON;
+               ledParameterGreen.offTime = SOLID_OFF;
                 LED_control(&ledParameterGreen);
             }
             else if(shared_networking_params.haveDataConnection == 1)
             {
-                ledParameterGreen.onTime = LED_BLINK;
-                ledParameterGreen.offTime = LED_BLINK;
+               ledParameterGreen.onTime = LED_BLINK;
+               ledParameterGreen.offTime = LED_BLINK;
                 LED_control(&ledParameterGreen);
             }
         }
@@ -362,3 +379,4 @@ static void  wifiConnectionStateChanged(uint8_t status)
         CLOUD_reset();
     } 
 }
+
