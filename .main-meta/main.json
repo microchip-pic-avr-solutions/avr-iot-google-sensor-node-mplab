@@ -9,16 +9,16 @@
         "projectName": "avr-iot-google-sensor-node-mplab",
         "shortDescription": "Microchip AVR-IoT WG (Wireless for Google Cloud) Application Example",
         "ide": {
-            "name": "MPLABX",
+            "name": "MPLAB X",
             "semverRange": ">=5.30.0"
         },
         "compiler": [
             {
-                "name": "xc8",
+                "name": "XC8",
                 "semverRange": "^2.10.0"
             },
             {
-                "name": "gcc",
+                "name": "AVR GCC",
                 "semverRange": "^5.4.0"
             }
         ],
